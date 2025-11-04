@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+}
+
+
+/* 🍃 Falling Leaves Animation */
+.leaf {
+  position: absolute;
+  top: -50px;
+  width: 25px;
+  height: 25px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/616/616408.png");
+  background-size: cover;
+  opacity: 0.8;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
