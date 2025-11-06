@@ -71,7 +71,7 @@ export default function About() {
           <div className="relative flex justify-center order-2 fade-in-delayed group">
             <div className="absolute -inset-1 bg-gradient-to-tr from-green-400 to-green-600 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-all duration-700"></div>
             <img
-              src="/yogendra-sir.jpg"
+              src="/images/yogendra-sir.jpg"
               alt="Shree Yogendra Sir"
               className="relative z-10 w-[320px] h-[380px] object-cover rounded-2xl border-4 border-green-300 shadow-[0_0_40px_rgba(34,197,94,0.4)] transition-transform duration-700 group-hover:scale-105"
             />
