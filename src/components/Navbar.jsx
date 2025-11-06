@@ -24,7 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return ( 
+  return (
     <nav
       className={`fixed top-0 left-0 w-full z-100 transition-all duration-800 ${
         isScrolled || location.pathname !== "/"

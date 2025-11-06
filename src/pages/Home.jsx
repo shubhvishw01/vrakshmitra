@@ -76,28 +76,28 @@ export default function Home() {
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             ></motion.div>
 
-            {/* 🌍 Earth Animation */}
+            {/* 🌍 Earth Animation (Fixed Responsive Round Shape) */}
             <motion.div
-              className="relative w-72 h-72 md:w-104 md:h-104 rounded-full overflow-hidden"
+              className="relative aspect-square w-64 sm:w-72 md:w-96 rounded-full overflow-hidden flex items-center justify-center"
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
             >
               <motion.img
                 src="https://i0.wp.com/amazingphysicsforall.com/wp-content/uploads/2022/06/planet-earth-space-continents-1457453.png?fit=1280%2C1280&ssl=1"
                 alt="Earth"
-                className="absolute top-0 left-0 w-full h-full scale-125 rounded-full"
+                className="w-full h-full object-cover rounded-full"
                 style={{
                   filter:
-                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)", // starting dry look
+                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)",
                 }}
                 animate={{
                   filter: [
-                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)", // dry earth
-                    "brightness(1.1) saturate(1.4) sepia(0) hue-rotate(10deg)", // green earth
+                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)", // dry
+                    "brightness(1.1) saturate(1.4) sepia(0) hue-rotate(10deg)", // green
                   ],
                 }}
                 transition={{
-                  duration: 10,
+                  duration: 7,
                   ease: "easeInOut",
                   repeat: Infinity,
                   repeatType: "mirror",
@@ -130,7 +130,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 min-h-[80vh]">
+        <section className="py-20">
           {/* 🌗 Dark Overlay for brightness control */}
 
           {/* 🌱 Content */}
