@@ -34,7 +34,7 @@ export default function Home() {
           preload="auto"
         >
           {/* <source src="/videos/vtest.mp4" type="video/mp4" /> */}
-          <source src="/videos/home1280..webm" type="video/mp4" />
+          <source src="/videos/home1280.webm" type="video/mp4" />
         </video>
 
         {/* Dark Overlay */}
