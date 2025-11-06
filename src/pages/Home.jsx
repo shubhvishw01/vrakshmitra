@@ -33,7 +33,8 @@ export default function Home() {
           playsInline
           preload="auto"
         >
-          <source src="/videos/vtest.mp4" type="video/mp4" />
+          {/* <source src="/videos/vtest.mp4" type="video/mp4" /> */}
+          <source src="/videos/home1280..webm" type="video/mp4" />
         </video>
 
         {/* Dark Overlay */}
@@ -70,14 +71,14 @@ export default function Home() {
           <div className="md:w-1/2 flex justify-center md:mb-0 relative md:mt-0">
             {/* 🌟 Glowing Aura */}
             <motion.div
-              className="absolute w-80 h-80 md:w-[30rem] md:h-[30rem] rounded-full bg-green-600/30 blur-3xl"
+              className="absolute w-80 h-80 md:w-120 md:h-120 rounded-full bg-green-600/30 blur-3xl"
               animate={{ scale: [1, 1.05, 1], rotate: [0, 360] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             ></motion.div>
 
             {/* 🌍 Earth Animation */}
             <motion.div
-              className="relative w-72 h-72 md:w-[26rem] md:h-[26rem] rounded-full overflow-hidden"
+              className="relative w-72 h-72 md:w-104 md:h-104 rounded-full overflow-hidden"
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
             >
@@ -107,11 +108,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 🌏 About Section */}
       <section className="relative bg-[url('/images/Nature_home.jpg')] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-black/50 backdrop-brightness-75"></div>
-        {/* 🌏 About Section */}
         <section className="py-16">
-          <div className="relative bg-white/90 rounded-2xl p-8 max-w-6xl mx-auto px-4 text-center">
+          <div className="relative bg-white/90 rounded-2xl p-8 max-w-6xl mx-auto px-4 text-center transition-all duration-700 hover:scale-105">
             <h2 className="text-3xl font-bold text-green-800 mb-6">
               हमारा मिशन 🌏
             </h2>
@@ -133,7 +134,7 @@ export default function Home() {
           {/* 🌗 Dark Overlay for brightness control */}
 
           {/* 🌱 Content */}
-          <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
+          <div className="relative max-w-6xl mx-auto px-4 text-center text-white transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-300 mb-10">
               आगामी वृक्षारोपण
             </h2>
@@ -158,7 +159,7 @@ export default function Home() {
               ].map((event, index) => (
                 <div
                   key={index}
-                  className="bg-white/90 rounded-2xl shadow-md p-8 hover:shadow-lg transition text-gray-800"
+                  className="duration-300 bg-white/90 rounded-2xl shadow-md p-8 hover:shadow-lg hover:-translate-y-5 transition text-gray-800"
                 >
                   <h3 className="text-xl font-semibold text-green-800">
                     {event.place}
@@ -173,15 +174,15 @@ export default function Home() {
 
         {/* 🌲 Projects Section */}
         <section className="py-16">
-          <div className="relative max-w-6xl mx-auto px-6 text-center">
+          <div className="relative max-w-6xl mx-auto px-6 text-center transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-300 mb-10">
               हमारे प्रमुख प्रोजेक्ट्स 🌲
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-8 ">
               {projects.map((p, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transform hover:-translate-y-1 transition"
+                  className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transform hover:-translate-y-5 transition"
                 >
                   <img
                     src={p.img}

@@ -7,6 +7,8 @@ export default defineConfig({
   base: "/",
   build: {
     outDir: "dist",
+    minify: "esbuild",
+    chunkSizeWarningLimit: 600,
   },
   plugins: [react(),
     tailwindcss(),

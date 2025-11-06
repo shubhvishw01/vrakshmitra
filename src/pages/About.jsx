@@ -1,57 +1,59 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function About() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const missionRef = useRef(null);
+  const visionRef = useRef(null);
+  const [visibleSection, setVisibleSection] = useState({
+    mission: false,
+    vision: false,
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target.id === "mission" && entry.isIntersecting) {
+            setVisibleSection((prev) => ({ ...prev, mission: true }));
+          } else if (entry.target.id === "vision" && entry.isIntersecting) {
+            setVisibleSection((prev) => ({ ...prev, vision: true }));
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (missionRef.current) observer.observe(missionRef.current);
+    if (visionRef.current) observer.observe(visionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800 pt-15 overflow-hidden">
       {/* Header Section */}
-      <motion.section
-        initial={{ opacity: 0, y: -80 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative text-center py-20 bg-gradient-to-r from-green-900 to-green-700 text-white"
-      >
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10">
-          <motion.h1
-            className="text-4xl md:text-6xl font-extrabold drop-shadow-lg"
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1 }}
-          >
+      <section className="relative text-center py-20 bg-gradient-to-r  text-white overflow-hidden fade-in">
+        <div className="absolute inset-0 bg-black/50 backdrop-brightness-75"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1564426699369-f14249ac2c32?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmlsbGFnZSUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000')] bg-cover bg-center opacity-50"></div>
+
+        <div className="relative z-10 transition-all duration-700 hover:scale-105">
+          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg ">
             वृक्ष मित्र संस्था 🌳
-          </motion.h1>
-          <motion.p
-            className="mt-6 text-lg text-green-100 max-w-3xl mx-auto"
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
+          </h1>
+          <p className="text-2xl font-bold mt-8 text-white max-w-3xl mx-auto ">
             हम एक पर्यावरण संरक्षण संगठन हैं जो पेड़ लगाने, उनकी देखभाल करने और
             लोगों को प्रकृति के प्रति संवेदनशील बनाने का कार्य करता है।
-          </motion.p>
+          </p>
         </div>
-      </motion.section>
-
+      </section>
       {/* Founder Section */}
-      <motion.section
-        className="bg-gradient-to-r from-white via-green-50 to-white py-20 border-t border-green-200"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-          >
-            <h2 className="text-3xl font-bold text-green-800 mb-3">
+      <section className="relative bg-gradient-to-r from-white via-green-50 to-white py-24 border-t border-green-200 overflow-hidden fade-in">
+        <div className="absolute inset-0 bg-gradient-to-r from-green-100 via-green-400/40 to-transparent blur-3xl"></div>
+
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+          {/* Text */}
+          <div className="order-1 fade-in transition-all duration-700 hover:scale-105">
+            <h2 className="text-4xl font-bold text-green-800 mb-3 tracking-wide transition-all duration-700 hover:text-green-600">
               संस्थापक: श्री योगेन्द्र सर 🙏
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
@@ -63,45 +65,39 @@ export default function About() {
               सफलतापूर्वक संचालित कर रहे हैं। उनका उद्देश्य है — “हर व्यक्ति एक
               वृक्ष लगाए, और धरती को फिर से हरा-भरा बनाए।” 🌱
             </p>
-          </motion.div>
-          <motion.div
-            className="relative group flex justify-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="absolute -inset-1 bg-gradient-to-tr from-green-400 to-green-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition-all"></div>
+          </div>
+
+          {/* Image */}
+          <div className="relative flex justify-center order-2 fade-in-delayed group">
+            <div className="absolute -inset-1 bg-gradient-to-tr from-green-400 to-green-600 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-all duration-700"></div>
             <img
               src="/yogendra-sir.jpg"
               alt="Shree Yogendra Sir"
-              className="relative z-10 w-[320px] h-[380px] object-cover rounded-2xl border-4 border-green-300 shadow-[0_0_30px_rgba(34,197,94,0.4)]"
+              className="relative z-10 w-[320px] h-[380px] object-cover rounded-2xl border-4 border-green-300 shadow-[0_0_40px_rgba(34,197,94,0.4)] transition-transform duration-700 group-hover:scale-105"
             />
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
-
+      </section>
       {/* Mission & Vision */}
       <section className="py-20 max-w-7xl mx-auto px-6 space-y-24">
         {/* Mission */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            className="relative overflow-hidden rounded-3xl shadow-2xl group"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
+        <div
+          id="mission"
+          ref={missionRef}
+          className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
+            visibleSection.mission ? "animate-slideLeft" : "opacity-0"
+          }`}
+        >
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl group order-2 md:order-1">
             <img
-              src="https://png.pngtree.com/png-clipart/20230525/original/pngtree-world-environment-day-5th-june-green-earth-covered-with-trees-png-image_9170049.png"
+              src="https://www.fastweb.com/uploads/article_photo/photo/2036160/Simple_Environment.jpeg"
               alt="Mission"
-              className="w-full h-[400px] object-cover rounded-3xl transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-[400px] object-cover rounded-3xl transition-transform duration-700 group-hover:scale-105"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 1 }}
-          >
-            <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2">
+          <div className="order-1 md:order-2 transition-all duration-700 hover:scale-105">
+            <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2 hover:text-green-600">
               हमारा मिशन 🌏
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
@@ -109,18 +105,19 @@ export default function About() {
               परिवर्तन से निपटना है। वृक्ष मित्र संस्था का मानना है कि हर
               व्यक्ति एक पौधे के माध्यम से भविष्य को हरा बना सकता है।
             </p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Vision */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 1 }}
-          >
-            <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2">
+        <div
+          id="vision"
+          ref={visionRef}
+          className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
+            visibleSection.vision ? "animate-slideRight" : "opacity-0"
+          }`}
+        >
+          <div className="order-1 transition-all duration-700 hover:scale-105">
+            <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2 hover:text-green-600">
               हमारी दृष्टि 🌿
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
@@ -128,25 +125,19 @@ export default function About() {
               वाले वर्षों में लाखों पेड़ लगाने, जल संरक्षण और प्रदूषण नियंत्रण
               के प्रति जागरूकता फैलाने का लक्ष्य रखते हैं।
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="relative overflow-hidden rounded-3xl shadow-2xl group"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl group order-2">
             <img
               src="https://wisconsinmuslimjournal.org/wp-content/uploads/2024/08/timthumb.jpeg"
               alt="Vision"
-              className="w-full h-[400px] object-cover rounded-3xl transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-[400px] object-cover rounded-3xl transition-transform duration-700 group-hover:scale-105"
             />
-          </motion.div>
+          </div>
         </div>
       </section>
-
       {/* Timeline Section */}
-      <section className="bg-gradient-to-b from-white to-green-50 py-20">
+      <section className="bg-linear-to-b from-white to-green-50 py-20">
         <div className="max-w-5xl mx-auto px-6">
           <motion.h2
             className="text-4xl font-bold text-center text-green-800 mb-12"
@@ -200,32 +191,25 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* Join Section */}
-      <motion.section
-        className="bg-green-700 text-white text-center py-20 relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></motion.div>
+      ;{/* Join Section */}
+      <section className="bg-green-700 text-white text-center py-20 relative overflow-hidden fade-in">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></div>
         <div className="relative z-10">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4 transition-all duration-700 hover:scale-105">
             आइए, हमारे साथ मिलकर धरती को बचाएं 🌍
           </h2>
-          <p className="max-w-2xl mx-auto mb-8 text-green-100 text-lg">
+          <p className="max-w-2xl mx-auto mb-8 text-green-100 text-lg fade-in-delayed">
             हर व्यक्ति एक पेड़ लगाए, यही हमारे पर्यावरण की सच्ची रक्षा है। अभी
             जुड़ें और बनें एक सच्चे वृक्ष मित्र!
           </p>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
+          <a
             href="/volunteer"
-            className="bg-yellow-400 text-green-900 px-8 py-3 rounded-full font-semibold hover:bg-yellow-500 shadow-lg shadow-yellow-300/30 transition-all"
+            className="bg-yellow-400 text-green-900 px-8 py-3 rounded-full font-semibold hover:bg-yellow-500 shadow-lg shadow-yellow-300/30 transition-all duration-700 hover:scale-105"
           >
             हमारे साथ जुड़ें →
-          </motion.a>
+          </a>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }
