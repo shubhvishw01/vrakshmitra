@@ -55,7 +55,7 @@ const Gallery = () => {
   const events = selectedType === "past" ? pastEvents : upcomingEvents;
 
   return (
-    <section className="max-w-5xl mx-auto text-center mt-20 mb-20 px-4">
+    <section className="max-w-5xl mx-auto text-center mt-20 py-16 px-4">
       <h1 className="text-3xl font-bold text-green-800 mb-2">
         वृक्षारोपण कार्यक्रम 🌳
       </h1>

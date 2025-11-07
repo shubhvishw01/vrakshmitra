@@ -1,6 +1,6 @@
 const Donate = () => {
   return (
-    <section className="max-w-3xl mx-auto text-center min-h-110 mt-20">
+    <section className="max-w-3xl mx-auto text-center py-16 mt-20">
       <h1 className="text-3xl font-bold text-green-800 mb-4">
         {/* Support Our Mission 💚 */}
         हमारे मिशन का समर्थन करें 💚
