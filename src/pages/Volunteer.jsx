@@ -1,7 +1,7 @@
 const Volunteer = () => {
   return (
-    <section className="max-w-3xl mx-auto text-center py-16 mt-20">
-      <h1 className="text-3xl font-bold text-green-800 mb-4">
+    <section className="max-w-3xl mx-auto text-center py-20 mt-20">
+      <h1 className="text-3xl font-bold text-green-800 mb-4 ">
         Become a Vraksh Mitra 🌿
       </h1>
       <p className="text-gray-700 mb-6">

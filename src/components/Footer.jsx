@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-green-800 text-white relative z-10 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <footer className="bg-green-800 text-white relative mt-auto">
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-4 gap-6">
         {/* Left */}
         <div>
-          <h3 className="text-xl font-semibold mb-2">
+          <h3 className="text-xl text-center font-semibold mb-2">
             🌱 Vraksh Mitra Sanstha
           </h3>
-          <p className="text-sm text-gray-200">
+          <p className="text-sm text-center text-gray-200">
             Dedicated to making Earth greener and cleaner by planting and
             protecting trees.
           </p>
@@ -18,8 +18,8 @@ export default function Footer() {
 
         {/* Middle */}
         <div>
-          <h4 className="font-semibold mb-2">Quick Links</h4>
-          <ul className="space-y-1 text-gray-300">
+          <h4 className="text-center font-semibold mb-2">Quick Links</h4>
+          <ul className="text-center space-y-1 text-gray-300">
             <li>
               <Link to="/about" className="hover:text-yellow-400">
                 About
@@ -43,10 +43,41 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Follow Us */}
+        <div className="text-center">
+          <h4 className="font-semibold mb-2">Follow Us</h4>
+          <div className="justify-center space-x-4">
+            <a
+              href="https://www.facebook.com/vrakshmitrasanstha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-yellow-400"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://www.instagram.com/vrakshmitrasanstha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-yellow-400"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://twitter.com/vrakshmitra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-yellow-400"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
+
         {/* Right */}
         <div>
-          <h4 className="font-semibold mb-2">Contact</h4>
-          <p className="text-gray-300 text-sm">
+          <h4 className="text-center font-semibold mb-2">Contact</h4>
+          <p className="text-center text-gray-300 text-sm">
             📍 Salichouka Road, Madhya Pradesh, India <br />
             📧 vrakshmitra@gmail.com <br />
             📞 +91 81033 84532

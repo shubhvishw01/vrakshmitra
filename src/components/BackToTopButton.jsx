@@ -7,7 +7,7 @@ export default function BackToTopButton() {
   // Scroll par visibility control
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) setIsVisible(true);
+      if (window.scrollY > 600) setIsVisible(true);
       else setIsVisible(false);
     };
 

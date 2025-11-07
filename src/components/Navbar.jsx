@@ -1,135 +1,143 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-export default function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const location = useLocation();
 
-  const navItems = [
+  const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Projects", path: "/projects" },
     { name: "Gallery", path: "/gallery" },
     { name: "Volunteer", path: "/volunteer" },
     { name: "Donate", path: "/donate" },
-    // { name: "Blog", path: "/blog" },
+    { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
 
+  const isHome = location.pathname === "/";
+
+  // ✅ Optimized scroll listener with requestAnimationFrame
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const bgOpacity = Math.min(scrollY / 200, 0.9);
+  const blurValue = Math.min(scrollY / 30, 10);
+
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-100 transition-all duration-800 ${
-        isScrolled || location.pathname !== "/"
-          ? "bg-white/80 shadow-md text-green-700"
-          : "bg-transparent text-white"
-      }`}
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-700 will-change-transform will-change-backdrop-filter"
+      style={{
+        backgroundColor: isHome
+          ? `rgba(255,255,255,${bgOpacity})`
+          : "rgba(255,255,255,0.9)",
+        backdropFilter: `blur(${isHome ? blurValue : 8}px)`,
+        WebkitBackdropFilter: `blur(${isHome ? blurValue : 8}px)`,
+        boxShadow:
+          scrollY > 60
+            ? "0 4px 20px rgba(0,0,0,0.1)"
+            : "0 0px 0px rgba(0,0,0,0)",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 transition-all duration-700">
         {/* 🌿 Logo */}
-        <Link
+        <NavLink
           to="/"
-          className={`text-2xl font-bold flex items-center gap-2 transition-all ${
-            isScrolled || location.pathname !== "/"
-              ? "text-green-700"
-              : "text-white"
+          className={`text-2xl font-bold transition-all duration-700 ${
+            isHome && scrollY < 40
+              ? "text-white scale-110"
+              : "text-green-700 scale-100"
           }`}
         >
-          <span className="text-3xl">🌱</span> वृक्ष मित्र संस्था
-        </Link>
+          🌱 वृक्ष मित्र संस्था
+        </NavLink>
 
         {/* 🖥️ Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
-          {navItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  `transition hover:text-yellow-300 ${
-                    isActive ? "text-yellow-300 font-semibold" : ""
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            </li>
+        <div className="hidden md:flex space-x-6 transition-colors duration-500">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.path}
+              className={({ isActive }) =>
+                `relative font-medium transition duration-300 
+                 hover:text-green-700 after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-full 
+                 after:scale-x-0 after:bg-green-500 after:opacity-70 after:transition-transform after:duration-300 hover:after:scale-x-100 
+                 ${
+                   isActive
+                     ? "text-green-700 after:scale-x-100"
+                     : isHome && scrollY < 40
+                     ? "text-white"
+                     : "text-gray-800"
+                 }`
+              }
+            >
+              {link.name}
+            </NavLink>
           ))}
-        </ul>
+        </div>
 
         {/* 📱 Mobile Menu Button */}
         <button
-          className={`md:hidden focus:outline-none z-120 ${
-            isOpen ? "text-white" : "text-green-700"
-          }`}
           onClick={() => setIsOpen(!isOpen)}
+          className={`md:hidden focus:outline-none z-[60] transition-colors duration-500 ${
+            isHome && scrollY < 40 ? "text-white" : "text-green-800"
+          }`}
         >
           {isOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
       </div>
 
-      {/* 📱 Mobile Slide Menu */}
+      {/* 📲 Slide Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 sm:w-1/2 
-        bg-green-800/70 backdrop-blur-lg border-l border-green-500/30
-        text-white shadow-2xl transform transition-all duration-500 ease-in-out 
-        z-110 rounded-l-3xl 
-        ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
+        className={`fixed top-0 right-0 h-screen w-3/4 sm:w-1/2 
+        bg-green-700/90 backdrop-blur-xl shadow-xl text-white
+        transform transition-transform duration-500 ease-in-out 
+        z-50 md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-6 px-4">
-          {navItems.map((item, index) => (
+        <div className="flex flex-col items-center justify-center h-full space-y-6">
+          {navLinks.map((link) => (
             <NavLink
-              key={item.path}
-              to={item.path}
+              key={link.name}
+              to={link.path}
               onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `text-lg font-medium tracking-wide transition duration-300 transform 
-                hover:scale-110 hover:text-yellow-300 ${
-                  isActive ? "text-yellow-300 font-semibold" : ""
+                `text-lg font-bold transition-colors duration-300 ${
+                  isActive
+                    ? "text-yellow-400"
+                    : "text-white hover:text-yellow-400"
                 }`
               }
-              style={{
-                animation: isOpen
-                  ? `fadeSlideIn 0.5s ease forwards ${index * 0.1 + 0.2}s`
-                  : "none",
-                opacity: 0,
-              }}
             >
-              {item.name}
+              {link.name}
             </NavLink>
           ))}
         </div>
       </div>
 
-      {/* 🔳 Background Overlay (video dikhega peeche se) */}
-      <div
-        className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-500 z-100 ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-        onClick={() => setIsOpen(false)}
-      ></div>
-
-      {/* 🔄 Animation Keyframes */}
-      <style>
-        {`
-          @keyframes fadeSlideIn {
-            from {
-              opacity: 0;
-              transform: translateX(40px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-        `}
-      </style>
+      {/* 🔲 Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
     </nav>
   );
-}
+};
+
+export default Navbar;
