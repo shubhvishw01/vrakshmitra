@@ -48,7 +48,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.2 }
     );
 
     boxes.forEach((box) => observer.observe(box));
@@ -79,12 +79,12 @@ export default function Home() {
       <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         {/* 🎬 Background Video */}
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0 will-change-transform"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
         >
           <source src="/videos/home1280.webm" type="video/webm" />
         </video>
@@ -96,11 +96,14 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-0 px-6 py-16 md:py-24 text-white">
           {/* LEFT */}
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-md">
               चलो मिलकर <span className="text-green-300">धरा को हरा भरा</span>{" "}
               बनाते हैं 🌱
             </h1>
             <p className="text-lg text-gray-100">
+              🌿"हर लगाया हुआ वृक्ष आने वाली पीढ़ियों के लिए आशा का दीप बनता
+              है।"
+              <br />
               वृक्ष मित्र संस्था पर्यावरण की रक्षा और वृक्षारोपण को समर्पित एक
               अभियान है।
             </p>
@@ -175,22 +178,34 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 🌏 About Section */}
       <div className="relative bg-[url('/images/Nature_home.jpg')] bg-cover bg-center bg-no-repeat">
+        {/* 🌏 About Section */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="py-16">
-          <div className="relative bg-white/95 rounded-2xl p-8 max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-green-800 mb-6">
+        <div className="py-16 md:py-20 mx-3">
+          <div
+            className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md shadow-2xl rounded-4xl 
+                   p-6    text-center 
+                   border border-green-300"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green-800 mb-4 sm:mb-6 tracking-wide">
               हमारा मिशन 🌏
             </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              वृक्ष मित्र संस्था पर्यावरण की सुरक्षा और पौधारोपण के लिए काम करती
-              है।
+
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto px-1">
+              वृक्ष मित्र संस्था का लक्ष्य केवल पेड़ लगाना नहीं, बल्कि हरियाली
+              को फिर से जीवित करना है। हम ऐसी दुनिया बनाना चाहते हैं जहाँ हर
+              व्यक्ति प्रकृति से जुड़कर उसके संरक्षण में अपना योगदान दे। हम
+              पौधारोपण, वृक्ष संरक्षण और पर्यावरण जागरूकता के माध्यम से आने वाली
+              पीढ़ियों के लिए एक स्वच्छ, सुरक्षित और संतुलित भविष्य तैयार कर रहे
+              हैं।
             </p>
+
             <Link
               to="/about"
-              className="inline-block mt-6 bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition"
+              className="inline-block mt-6 sm:mt-8 bg-green-700 text-white text-base sm:text-lg 
+              px-6 sm:px-8 py-2.5 sm:py-3 rounded-full 
+              hover:bg-green-800 transition-all shadow-md hover:shadow-lg"
             >
               और जानें →
             </Link>
@@ -207,24 +222,24 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  date: "10 नवम्बर 2025",
+                  date: "25 नवम्बर 2025",
                   place: "सालीचौका – वन उद्यान",
-                  desc: "स्थानीय विद्यालय के साथ 200 पौधों का वृक्षारोपण",
+                  desc: "स्थानीय विद्यालय के साथ पौधों का वृक्षारोपण",
                 },
                 {
-                  date: "15 नवम्बर 2025",
+                  date: "27 नवम्बर 2025",
                   place: "गाडरवारा – नदी किनारा",
                   desc: "नर्मदा संरक्षण हेतु वृक्षारोपण अभियान",
                 },
                 {
-                  date: "20 नवम्बर 2025",
-                  place: "भोपाल – पार्क क्षेत्र",
+                  date: "30 नवम्बर 2025",
+                  place: "सालीचौका – पार्क क्षेत्र",
                   desc: "सामाजिक समूह द्वारा हरित मिशन कार्यक्रम",
                 },
               ].map((event, i) => (
                 <div
                   key={i}
-                  className="box bg-white/90 rounded-2xl shadow p-8 transition transform hover:-translate-y-3"
+                  className="box bg-white/90 rounded-2xl shadow p-8 transition hover:-translate-y-3"
                 >
                   <h3 className="text-xl font-semibold text-green-800">
                     {event.place}
@@ -240,8 +255,8 @@ export default function Home() {
         {/* Projects */}
         <div className="py-16">
           <div className=" relative max-w-6xl mx-auto px-6 text-center">
-            <h2 className="box text-4xl font-bold text-green-300 mb-10">
-              हमारे प्रमुख प्रोजेक्ट्स 🌲
+            <h2 className="box text-4xl font-bold text-green-300 mb-10 text-center">
+              हमारे प्रमुख प्रोजेक्ट्स
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">

@@ -73,3 +73,55 @@ function Episode() {
 }
 
 export default Episode;
+
+// import React, { useState, useEffect } from "react";
+
+// export default function ScrollSlideDiv() {
+//   const [scrollY, setScrollY] = useState(0);
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setScrollY(window.scrollY);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   // Yahan opacity aur translateX ko scroll ke hisaab se map karte hain
+//   const maxScroll = 100; // scroll ke kitne px tak animation chale
+//   const opacity = Math.min(scrollY / maxScroll, 1) * 0.9;
+//   const translateX = Math.min(scrollY / maxScroll, 1) * 500;
+
+//   return (
+//     <div
+//       style={{
+//         height: "100vh",
+//         padding: "50px",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+//       <div
+//         style={{
+//           opacity: opacity,
+//           transform: `translateX(${translateX}px)`,
+//           transition: "all 0.01s ease-out", // smooth movement and fade
+//           background: "linear-gradient(135deg, #667eea, #764ba2)", // gradient color
+//           color: "white",
+//           padding: "30px 40px",
+//           width: "250px",
+//           borderRadius: "15px", // rounded corners
+//           boxShadow: "0 15px 30px rgba(0,0,0,0.2)", // subtle shadow
+//           fontSize: "1.2rem",
+//           textAlign: "center",
+//           fontWeight: "600",
+//         }}
+//       >
+//         Scroll-Based Slide
+//       </div>
+//     </div>
+//   );
+// }

@@ -2,11 +2,6 @@
 
 /* Home */
 
-
-
-
-
-
 /* Episode */
 .box {
   opacity: 0;
@@ -31,8 +26,6 @@
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
-
-
 
 @layer utilities {
   .scroll-up {
@@ -68,8 +61,6 @@
 
 /* End Episode */
 /* EndHome */
-
-
 
 /* ---------- FADE / SLIDE BASE ---------- */
 .fade-section {
@@ -110,8 +101,9 @@
   transform: translateX(120px);
 }
 
-
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -127,7 +119,6 @@ html, body, #root {
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
 }
-
 
 @keyframes fall {
   0% {

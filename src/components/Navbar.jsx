@@ -14,9 +14,9 @@ const Navbar = () => {
     { name: "Gallery", path: "/gallery" },
     { name: "Volunteer", path: "/volunteer" },
     { name: "Donate", path: "/donate" },
-    { name: "Blog", path: "/blog" },
+    // { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
-    { name: "Episode", path: "/episode" },
+    // { name: "Episode", path: "/episode" },
   ];
 
   const isHome = location.pathname === "/";
