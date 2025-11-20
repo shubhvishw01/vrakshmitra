@@ -16,6 +16,7 @@ const Navbar = () => {
     { name: "Donate", path: "/donate" },
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
+    { name: "Episode", path: "/episode" },
   ];
 
   const isHome = location.pathname === "/";

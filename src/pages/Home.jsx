@@ -1,7 +1,60 @@
+import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [scrollDir, setScrollDir] = useState("down");
+
+  // Detect Scroll Direction
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const detectScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setScrollDir("down");
+      } else {
+        setScrollDir("up");
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", detectScroll);
+    return () => window.removeEventListener("scroll", detectScroll);
+  }, []);
+
+  // Intersection Observer
+  useEffect(() => {
+    const boxes = document.querySelectorAll(".box");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+
+          if (entry.isIntersecting) {
+            el.classList.remove("hide-left");
+
+            if (scrollDir === "down") {
+              el.classList.add("from-right");
+              el.classList.remove("from-left");
+            } else {
+              el.classList.add("from-left");
+              el.classList.remove("from-right");
+            }
+          } else {
+            el.classList.add("hide-left");
+            el.classList.remove("from-left");
+            el.classList.remove("from-right");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    boxes.forEach((box) => observer.observe(box));
+    return () => observer.disconnect();
+  }, [scrollDir]);
+
   const projects = [
     {
       title: "हर घर पेड़",
@@ -23,35 +76,35 @@ export default function Home() {
   return (
     <div className="text-gray-800">
       {/* 🌱 HERO SECTION */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         {/* 🎬 Background Video */}
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0 will-change-transform"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
         >
-          {/* <source src="/videos/vtest.mp4" type="video/mp4" /> */}
-          <source src="/videos/home1280.webm" type="video/mp4" />
+          <source src="/videos/home1280.webm" type="video/webm" />
         </video>
 
-        {/* Dark Overlay */}
+        {/* Dark Overlay (optimized, no backdrop filters) */}
         <div className="absolute inset-0 bg-black/50 z-0"></div>
 
         {/* 🌿 Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-0 px-6 py-16 md:py-24 text-white">
+          {/* LEFT */}
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow">
               चलो मिलकर <span className="text-green-300">धरा को हरा भरा</span>{" "}
               बनाते हैं 🌱
             </h1>
-            <p className="text-lg text-gray-100 drop-shadow-md">
+            <p className="text-lg text-gray-100">
               वृक्ष मित्र संस्था पर्यावरण की रक्षा और वृक्षारोपण को समर्पित एक
-              अभियान है। आइए मिलकर पौधे लगाएँ और आने वाली पीढ़ियों के लिए एक
-              हरियाली भरा भविष्य बनाएं।
+              अभियान है।
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
                 to="/volunteer"
@@ -59,6 +112,7 @@ export default function Home() {
               >
                 🌿 हमारे साथ जुड़ें
               </Link>
+
               <Link
                 to="/donate"
                 className="bg-yellow-400 text-green-900 px-5 py-3 rounded-full font-semibold hover:bg-yellow-500 transition"
@@ -68,58 +122,71 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="md:w-1/2 flex justify-center md:mb-0 relative md:mt-0">
-            {/* 🌟 Glowing Aura */}
+          {/* RIGHT — optimized blur + rotation */}
+          <div className="md:w-1/2 flex justify-center relative">
+            {/* Aura Effect (Highly optimized) */}
             <motion.div
-              className="absolute w-80 h-80 md:w-120 md:h-120 rounded-full bg-green-600/30 blur-3xl"
-              animate={{ scale: [1, 1.05, 1], rotate: [0, 360] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            ></motion.div>
+              className="absolute w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full bg-green-600/20 blur-2xl"
+              style={{ willChange: "transform" }}
+              animate={{ scale: 1.05 }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "mirror",
+                duration: 10,
+                ease: "easeInOut",
+              }}
+            />
 
-            {/* 🌍 Earth Animation (Fixed Responsive Round Shape) */}
+            {/* Earth */}
             <motion.div
-              className="relative aspect-square w-64 sm:w-72 md:w-96 rounded-full overflow-hidden flex items-center justify-center"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              className="relative aspect-square w-64 sm:w-72 md:w-96 rounded-full overflow-hidden"
+              style={{ willChange: "transform" }}
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 80,
+                repeat: Infinity,
+                ease: "linear",
+              }}
             >
               <motion.img
-                src="https://i0.wp.com/amazingphysicsforall.com/wp-content/uploads/2022/06/planet-earth-space-continents-1457453.png?fit=1280%2C1280&ssl=1"
+                src="/images/earth.webp"
                 alt="Earth"
                 className="w-full h-full object-cover rounded-full"
                 style={{
-                  filter:
-                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)",
+                  filter: "brightness(1) saturate(1)",
+                  willChange: "filter, transform",
                 }}
                 animate={{
                   filter: [
-                    "brightness(0.7) saturate(0.7) sepia(0.5) hue-rotate(-20deg)", // dry
-                    "brightness(1.1) saturate(1.4) sepia(0) hue-rotate(10deg)", // green
+                    "brightness(0.95) saturate(0.95)",
+                    "brightness(1.1) saturate(1.2)",
                   ],
+                  scale: [1, 1.02, 1], // subtle breathing effect
                 }}
                 transition={{
-                  duration: 7,
-                  ease: "easeInOut",
+                  duration: 6,
                   repeat: Infinity,
                   repeatType: "mirror",
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* 🌏 About Section */}
-      <section className="relative bg-[url('/images/Nature_home.jpg')] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-black/50 backdrop-brightness-75"></div>
-        <section className="py-16">
-          <div className="relative bg-white/90 rounded-2xl p-8 max-w-6xl mx-auto px-4 text-center transition-all duration-700 hover:scale-105">
+      <div className="relative bg-[url('/images/Nature_home.jpg')] bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        <div className="py-16">
+          <div className="relative bg-white/95 rounded-2xl p-8 max-w-6xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-green-800 mb-6">
               हमारा मिशन 🌏
             </h2>
             <p className="text-gray-700 max-w-2xl mx-auto">
-              वृक्ष मित्र संस्था पर्यावरण की सुरक्षा, पौधारोपण और जलवायु संतुलन
-              के लिए काम करती है। हम हर वर्ष हजारों पौधे लगाते हैं और लोगों को
-              पर्यावरण के प्रति जागरूक बनाते हैं।
+              वृक्ष मित्र संस्था पर्यावरण की सुरक्षा और पौधारोपण के लिए काम करती
+              है।
             </p>
             <Link
               to="/about"
@@ -128,14 +195,12 @@ export default function Home() {
               और जानें →
             </Link>
           </div>
-        </section>
+        </div>
 
-        <section className="py-20">
-          {/* 🌗 Dark Overlay for brightness control */}
-
-          {/* 🌱 Content */}
-          <div className="relative max-w-6xl mx-auto px-4 text-center text-white transition-all duration-700 hover:scale-105">
-            <h2 className="text-4xl font-bold text-green-300 mb-10">
+        {/* Upcoming Events */}
+        <div className="py-20">
+          <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
+            <h2 className="box text-4xl font-bold text-green-300 mb-10">
               आगामी वृक्षारोपण
             </h2>
 
@@ -156,10 +221,10 @@ export default function Home() {
                   place: "भोपाल – पार्क क्षेत्र",
                   desc: "सामाजिक समूह द्वारा हरित मिशन कार्यक्रम",
                 },
-              ].map((event, index) => (
+              ].map((event, i) => (
                 <div
-                  key={index}
-                  className="duration-300 bg-white/90 rounded-2xl shadow-md p-8 hover:shadow-lg hover:-translate-y-5 transition text-gray-800"
+                  key={i}
+                  className="box bg-white/90 rounded-2xl shadow p-8 transition transform hover:-translate-y-3"
                 >
                   <h3 className="text-xl font-semibold text-green-800">
                     {event.place}
@@ -170,24 +235,25 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* 🌲 Projects Section */}
-        <section className="py-16">
-          <div className="relative max-w-6xl mx-auto px-6 text-center transition-all duration-700 hover:scale-105">
-            <h2 className="text-4xl font-bold text-green-300 mb-10">
+        {/* Projects */}
+        <div className="py-16">
+          <div className=" relative max-w-6xl mx-auto px-6 text-center">
+            <h2 className="box text-4xl font-bold text-green-300 mb-10">
               हमारे प्रमुख प्रोजेक्ट्स 🌲
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 ">
+
+            <div className="grid md:grid-cols-3 gap-8">
               {projects.map((p, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transform hover:-translate-y-5 transition"
+                  className="box bg-white rounded-2xl shadow p-6 transition transform hover:-translate-y-3"
                 >
                   <img
                     src={p.img}
                     alt={p.title}
-                    className="w-full h-48 object-cover mx-auto mb-4 rounded-xl"
+                    className="w-full h-48 object-cover mb-4 rounded-xl"
                   />
                   <h3 className="text-xl font-semibold text-green-700 mb-2">
                     {p.title}
@@ -197,8 +263,8 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
-      </section>
+        </div>
+      </div>
     </div>
   );
 }

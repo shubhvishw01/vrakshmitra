@@ -1,5 +1,115 @@
 @import "tailwindcss";
 
+/* Home */
+
+
+
+
+
+
+/* Episode */
+.box {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 0.6s ease-out;
+}
+
+/* viewport से बाहर होने पर */
+.hide-left {
+  opacity: 0;
+  transform: translateX(-90px);
+}
+
+/* Scroll UP → left से इन */
+.from-left {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Scroll DOWN → right से इन */
+.from-right {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+
+
+@layer utilities {
+  .scroll-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: scrollUpAnim 0.8s ease-out forwards;
+  }
+  .scroll-down {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: scrollDownAnim 0.8s ease-out forwards;
+  }
+  .hover-zoom {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .hover-zoom:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes scrollUpAnim {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes scrollDownAnim {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* End Episode */
+/* EndHome */
+
+
+
+/* ---------- FADE / SLIDE BASE ---------- */
+.fade-section {
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+/* ---------- SLIDE IN ---------- */
+.slide-in-left {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.slide-in-right {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* ---------- SLIDE OUT ---------- */
+.slide-out-left {
+  opacity: 0 !important;
+  transform: translateX(-120px) !important;
+}
+
+.slide-out-right {
+  opacity: 0 !important;
+  transform: translateX(120px) !important;
+}
+
+/* ---------- INITIAL HIDDEN POSITIONS ---------- */
+.fade-section.slide-out-left,
+.fade-section:not(.slide-in-left) {
+  transform: translateX(-120px);
+}
+
+.fade-section.slide-out-right,
+.fade-section:not(.slide-in-right) {
+  transform: translateX(120px);
+}
+
 
 html, body, #root {
   height: 100%;

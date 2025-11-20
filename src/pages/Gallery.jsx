@@ -1,100 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents } from "../redux/eventsSlice";
+import EventCard from "./EventCard";
 
-const EventCard = ({ image, title, date, location }) => {
-  return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105">
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
-      <div className="p-4 text-left">
-        <h3 className="text-lg font-semibold text-green-700">{title}</h3>
-        <p className="text-sm text-gray-600 mt-1">📅 {date}</p>
-        <p className="text-sm text-gray-600">📍 {location}</p>
-      </div>
-    </div>
-  );
-};
-
-const Gallery = () => {
+export default function Gallery() {
   const [selectedType, setSelectedType] = useState("upcoming");
 
-  const pastEvents = [
-    {
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
-      title: "हरित पृथ्वी अभियान",
-      date: "10 सितम्बर 2025",
-      location: "नागपुर, महाराष्ट्र",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1594737625785-ccebb47f34be",
-      title: "ग्रीन भोपाल मिशन",
-      date: "28 अगस्त 2025",
-      location: "भोपाल, मध्यप्रदेश",
-    },
-  ];
+  const dispatch = useDispatch();
 
-  const upcomingEvents = [
-    {
-      image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-      title: "हर घर पेड़ अभियान",
-      date: "10 नवम्बर 2025",
-      location: "पुणे, महाराष्ट्र",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1495395226200-8fbf6b97a79d",
-      title: "नर्मदा वृक्षारोपण",
-      date: "15 नवम्बर 2025",
-      location: "इंदौर, मध्यप्रदेश",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      title: "हरित भोपाल मिशन",
-      date: "20 नवम्बर 2025",
-      location: "भोपाल, मध्यप्रदेश",
-    },
-  ];
+  const { past, upcoming, loading } = useSelector((state) => state.events);
 
-  const events = selectedType === "past" ? pastEvents : upcomingEvents;
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  const events = selectedType === "past" ? past : upcoming;
 
   return (
     <section className="max-w-5xl mx-auto text-center mt-20 py-16 px-4">
-      <h1 className="text-3xl font-bold text-green-800 mb-2">
+      <h1 className="text-3xl font-bold text-green-800 mb-6">
         वृक्षारोपण कार्यक्रम 🌳
       </h1>
 
-      {/* 🔸 Radio Buttons */}
-      <div className="flex justify-center gap-6 mb-8">
+      {/* Radio Buttons */}
+      <div className="flex justify-center gap-8 mb-10">
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="radio"
-            name="vraksharopan"
+            name="type"
             value="past"
             checked={selectedType === "past"}
             onChange={() => setSelectedType("past")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">पिछला वृक्षारोपण</span>
+          <span className="text-gray-700 font-medium">पिछला</span>
         </label>
 
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="radio"
-            name="vraksharopan"
+            name="type"
             value="upcoming"
             checked={selectedType === "upcoming"}
             onChange={() => setSelectedType("upcoming")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">आगामी वृक्षारोपण</span>
+          <span className="text-gray-700 font-medium">आगामी</span>
         </label>
       </div>
 
-      {/* 🔸 Event Cards */}
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-        {events.map((event, i) => (
-          <EventCard key={i} {...event} />
-        ))}
-      </div>
+      {/* Loader */}
+      {loading ? (
+        <div className="flex justify-center items-center py-16">
+          <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      ) : (
+        <>
+          {/* No Events Case */}
+          {events.length === 0 ? (
+            <p className="text-gray-600 text-lg">कोई डेटा उपलब्ध नहीं है</p>
+          ) : (
+            <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+              {events.map((event, i) => (
+                <EventCard key={i} {...event} />
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </section>
   );
-};
-
-export default Gallery;
+}

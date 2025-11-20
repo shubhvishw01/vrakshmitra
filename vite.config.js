@@ -10,7 +10,10 @@ export default defineConfig({
     minify: "esbuild",
     chunkSizeWarningLimit: 600,
   },
+  
   plugins: [react(),
     tailwindcss(),
   ],
 })
+
+

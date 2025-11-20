@@ -32,20 +32,31 @@ export default function About() {
   return (
     <div className="bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800 pt-15 overflow-hidden">
       {/* Header Section */}
-      <section className="relative text-center py-20 bg-gradient-to-r  text-white overflow-hidden fade-in">
-        <div className="absolute inset-0 bg-black/50 backdrop-brightness-75"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1564426699369-f14249ac2c32?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmlsbGFnZSUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000')] bg-cover bg-center opacity-50"></div>
+      <section className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')] 
+      bg-cover bg-center will-change-transform brightness-[0.7]"
+        ></div>
 
-        <div className="relative z-10 transition-all duration-700 hover:scale-105">
-          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg ">
+        {/* Green Natural Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-green-900/40 to-black/60"></div>
+
+        {/* Content */}
+        <div className="relative max-w-3xl px-6 transition-all duration-700">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-green-200 drop-shadow-md leading-tight">
             वृक्ष मित्र संस्था 🌳
           </h1>
-          <p className="text-2xl font-bold mt-8 text-white max-w-3xl mx-auto ">
+
+          <p className="mt-4 text-lg md:text-xl text-green-100 leading-relaxed font-medium drop-shadow-md">
             हम एक पर्यावरण संरक्षण संगठन हैं जो पेड़ लगाने, उनकी देखभाल करने और
-            लोगों को प्रकृति के प्रति संवेदनशील बनाने का कार्य करता है।
+            लोगों को प्रकृति के प्रति जागरूक बनाने का कार्य करते हैं। हमारा
+            उद्देश्य आने वाली पीढ़ियों के लिए एक हरा-भरा, स्वच्छ और स्वस्थ
+            भविष्य बनाना है।
           </p>
         </div>
       </section>
+
       {/* Founder Section */}
       <section className="relative bg-gradient-to-r from-white via-green-50 to-white py-24 border-t border-green-200 overflow-hidden fade-in">
         <div className="absolute inset-0 bg-gradient-to-r from-green-100 via-green-400/40 to-transparent blur-3xl"></div>
@@ -54,12 +65,12 @@ export default function About() {
           {/* Text */}
           <div className="order-1 fade-in transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-800 mb-3 tracking-wide transition-all duration-700 hover:text-green-600">
-              संस्थापक: श्री योगेन्द्र सर 🙏
+              संस्थापक: श्री योगेन्द्र सिंह 🙏
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               वृक्ष मित्र संस्था के संस्थापक{" "}
               <span className="font-semibold text-green-700">
-                श्री योगेन्द्र सर
+                श्री योगेन्द्र सिंह
               </span>{" "}
               के ही मार्गदर्शन में सभी वृक्ष मित्र मिलकर इस अभियान को
               सफलतापूर्वक संचालित कर रहे हैं। उनका उद्देश्य है — “हर व्यक्ति एक
@@ -191,20 +202,45 @@ export default function About() {
           </div>
         </div>
       </section>
-      ;{/* Join Section */}
-      <section className="bg-green-700 text-white text-center py-20 relative overflow-hidden fade-in">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></div>
-        <div className="relative z-10">
-          <h2 className="text-4xl font-bold mb-4 transition-all duration-700 hover:scale-105">
-            आइए, हमारे साथ मिलकर धरती को बचाएं 🌍
+      {/* Join Section */}
+      <section className="relative py-32 text-center text-white overflow-hidden">
+        {/* Background Image + Parallax Effect */}
+        <div
+          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')]
+      bg-cover bg-center will-change-transform opacity-40"
+        ></div>
+
+        {/* Deep Nature Gradient Overlay */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b 
+      from-black/70 via-green-900/40 to-black/70"
+        ></div>
+
+        {/* Floating Light Particles */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="w-2 h-2 bg-green-300/60 blur-md rounded-full absolute top-20 left-1/4 animate-pulse" />
+          <div className="w-3 h-3 bg-yellow-200/50 blur-lg rounded-full absolute bottom-24 right-1/3 animate-ping" />
+          <div className="w-2 h-2 bg-green-200/40 blur-md rounded-full absolute bottom-14 left-1/3 animate-pulse" />
+        </div>
+
+        {/* Content */}
+        <div className="relative max-w-3xl mx-auto px-6 transition-all duration-700">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-md">
+            आइए, मिलकर धरती को बचाएं 🌍
           </h2>
-          <p className="max-w-2xl mx-auto mb-8 text-green-100 text-lg fade-in-delayed">
-            हर व्यक्ति एक पेड़ लगाए, यही हमारे पर्यावरण की सच्ची रक्षा है। अभी
-            जुड़ें और बनें एक सच्चे वृक्ष मित्र!
+
+          <p className="mt-5 mb-10 text-green-100 text-lg md:text-xl leading-relaxed drop-shadow-md">
+            हर व्यक्ति एक पेड़ लगाए — यही धरती के लिए सबसे अनमोल उपहार है। आइए,
+            प्रकृति की इस पुकार को सुनें और मिलकर बनें एक सच्चे ‘वृक्ष मित्र’
+            🌍🌱।
           </p>
+
           <a
             href="/volunteer"
-            className="bg-yellow-400 text-green-900 px-8 py-3 rounded-full font-semibold hover:bg-yellow-500 shadow-lg shadow-yellow-300/30 transition-all duration-700 hover:scale-105"
+            className="inline-block bg-yellow-400 text-green-900 px-10 py-3
+        rounded-full font-semibold shadow-xl hover:bg-yellow-500
+        transition-all duration-500 hover:scale-110 hover:shadow-2xl
+        ring-2 ring-yellow-300/40 hover:ring-yellow-300"
           >
             हमारे साथ जुड़ें →
           </a>
