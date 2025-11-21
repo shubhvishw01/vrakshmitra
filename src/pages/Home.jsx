@@ -5,6 +5,19 @@ import { motion } from "framer-motion";
 export default function Home() {
   const [scrollDir, setScrollDir] = useState("down");
 
+  const [weeks, setWeeks] = useState(0);
+
+  useEffect(() => {
+    // Starting date
+    const startDate = new Date(2019, 0, 20); // (year, monthIndex, day) — January = 0
+    const today = new Date();
+
+    const diffTime = today - startDate; // milliseconds
+    const diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7)); // convert to weeks
+
+    setWeeks(diffWeeks);
+  }, []);
+
   // Detect Scroll Direction
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -211,6 +224,32 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* <div
+          className="max-w-md mx-auto mt-10 p-6 rounded-3xl 
+      bg-white/20 backdrop-blur-lg shadow-xl border border-white/30 
+      text-center space-y-3"
+        >
+          <h1 className="text-2xl font-bold text-green-800 tracking-wide">
+            🌱 प्रथम पौधारोपण
+          </h1>
+
+          <h2 className="text-lg font-medium text-green-700">
+            वृक्ष मित्र संस्था का{" "}
+            <span className="font-bold text-green-900">{weeks}</span> सप्ताह चल
+            रहा है
+          </h2>
+
+          <div className="pt-2 text-base font-semibold text-green-900">
+            <p>
+              सप्ताह : <span className="text-green-700">{weeks}</span>
+            </p>
+            <p>
+              Total वृक्ष रोपण :{" "}
+              <span className="text-green-700">{weeks * 10}</span>
+            </p>
+          </div>
+        </div> */}
 
         {/* Upcoming Events */}
         <div className="py-20">

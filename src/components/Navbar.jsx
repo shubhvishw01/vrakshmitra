@@ -11,7 +11,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Projects", path: "/projects" },
-    { name: "Gallery", path: "/gallery" },
+    // { name: "Gallery", path: "/gallery" },
     { name: "Volunteer", path: "/volunteer" },
     { name: "Donate", path: "/donate" },
     // { name: "Blog", path: "/blog" },
@@ -37,7 +37,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const bgOpacity = Math.min(scrollY / 200, 0.9);
+  const bgOpacity = Math.min(scrollY / 300, 0.8);
   const blurValue = Math.min(scrollY / 30, 10);
 
   return (
@@ -65,7 +65,17 @@ const Navbar = () => {
               : "text-green-700 scale-100"
           }`}
         >
-          🌱 वृक्ष मित्र संस्था
+          <span className="block leading-none">🌱 वृक्ष मित्र संस्था</span>
+
+          {/* Niche Hindi text */}
+          <span className="text-center block text-sm font-medium tracking-wide translate-x-3">
+            सालीचौका
+          </span>
+          {/* Underline Hover Effect */}
+          <span
+            className={`mt-1 h-[2px] w-0 bg-green-500 group-hover:w-full transition-all duration-500 
+    ${isHome && scrollY < 40 ? "bg-white" : "bg-green-600"}`}
+          ></span>
         </NavLink>
 
         {/* 🖥️ Desktop Menu */}
