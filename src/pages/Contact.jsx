@@ -2,28 +2,28 @@ const Contact = () => {
   return (
     <section className="pt-28 bg-gradient-to-b from-green-50 to-white">
       {/* MAIN SECTION */}
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start p-2">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start p-4">
         {/* LEFT: GET IN TOUCH */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl font-extrabold text-green-800 mb-6">
-            🌿 संपर्क करें
+            संपर्क करें🌿
           </h1>
 
-          <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
-            <p className="text-2xl font-medium">
-              वृक्ष मित्र संस्था पर्यावरण संरक्षण व जनजागरण के लिए समर्पित एक
+          <div className="space-y-4 text-left text-gray-700 leading-relaxed">
+            <p className="font-medium">
+              1. वृक्ष मित्र संस्था पर्यावरण संरक्षण व जनजागरण के लिए समर्पित एक
               सामाजिक अभियान है।
             </p>
             <p className="font-medium">
-              हमारा उद्देश्य अधिक से अधिक पौधारोपण कर प्रकृति को हरा-भरा बनाना
-              है।
+              2. हमारा उद्देश्य अधिक से अधिक पौधारोपण कर प्रकृति को हरा-भरा
+              बनाना है।
             </p>
             <p className="font-medium">
-              यदि आप भी इस अभियान से जुड़कर सहयोग करना चाहते हैं, तो नीचे अपना
-              संदेश भेजें।
+              3. यदि आप भी इस अभियान से जुड़कर सहयोग करना चाहते हैं, तो नीचे
+              अपना संदेश भेजें।
             </p>
-            <p className="text-2xl font-medium">
-              आपका सुझाव, सहयोग और सहभागिता हमारे मिशन को और मजबूत बनाता है।
+            <p className=" font-medium">
+              4. आपका सुझाव, सहयोग और सहभागिता हमारे मिशन को और मजबूत बनाता है।
             </p>
           </div>
         </div>
@@ -69,26 +69,32 @@ const Contact = () => {
       </div>
 
       {/* CONTACT INFO BOXES */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mt-16">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mt-16 p-4">
         {/* Email */}
-        <div className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
-          {/* <img className="w-8" src="/icons/mail.svg" alt="Email" /> */}
+        <div
+          className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 
+                  flex flex-col items-center justify-center text-center"
+        >
           <p className="text-gray-800 text-sm sm:text-base break-all">
-            <a href="mailto:info@vrakshmitra.org">📧 vrakshmitra@gmail.com</a>
+            <a href="mailto:vrakshmitra@gmail.com">📧 vrakshmitra@gmail.com</a>
           </p>
         </div>
 
         {/* Phone */}
-        <div className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border-green-100 rounded-2xl p-5 flex gap-4 items-center">
-          {/* <img className="w-7" src="/icons/phone.svg" alt="Phone" /> */}
+        <div
+          className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 
+                  flex flex-col items-center justify-center text-center"
+        >
           <p className="text-gray-800 text-sm sm:text-base">
-            <a href="tel:+918888888888">📞 +91 81033 84532</a>
+            <a href="tel:+918103384532">📞 +91 81033 84532</a>
           </p>
         </div>
 
         {/* Address */}
-        <div className=" bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
-          {/* <img className="w-8" src="/icons/location.svg" alt="Location" /> */}
+        <div
+          className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 
+                  flex flex-col items-center justify-center text-center"
+        >
           <p className="text-gray-800 text-sm sm:text-base">
             📍 सालीचौका, मध्य प्रदेश, भारत
           </p>
