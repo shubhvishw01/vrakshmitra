@@ -2,7 +2,7 @@ const Contact = () => {
   return (
     <section className="pt-28 bg-gradient-to-b from-green-50 to-white">
       {/* MAIN SECTION */}
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start p-2">
         {/* LEFT: GET IN TOUCH */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl font-extrabold text-green-800 mb-6">
@@ -14,11 +14,11 @@ const Contact = () => {
               वृक्ष मित्र संस्था पर्यावरण संरक्षण व जनजागरण के लिए समर्पित एक
               सामाजिक अभियान है।
             </p>
-            <p className="text-2xl font-medium">
+            <p className="font-medium">
               हमारा उद्देश्य अधिक से अधिक पौधारोपण कर प्रकृति को हरा-भरा बनाना
               है।
             </p>
-            <p className="text-2xl font-medium">
+            <p className="font-medium">
               यदि आप भी इस अभियान से जुड़कर सहयोग करना चाहते हैं, तो नीचे अपना
               संदेश भेजें।
             </p>
@@ -71,7 +71,7 @@ const Contact = () => {
       {/* CONTACT INFO BOXES */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mt-16">
         {/* Email */}
-        <div className="bg-white shadow-lg border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
+        <div className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
           {/* <img className="w-8" src="/icons/mail.svg" alt="Email" /> */}
           <p className="text-gray-800 text-sm sm:text-base break-all">
             <a href="mailto:info@vrakshmitra.org">📧 vrakshmitra@gmail.com</a>
@@ -79,7 +79,7 @@ const Contact = () => {
         </div>
 
         {/* Phone */}
-        <div className="bg-white shadow-lg border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
+        <div className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border-green-100 rounded-2xl p-5 flex gap-4 items-center">
           {/* <img className="w-7" src="/icons/phone.svg" alt="Phone" /> */}
           <p className="text-gray-800 text-sm sm:text-base">
             <a href="tel:+918888888888">📞 +91 81033 84532</a>
@@ -87,7 +87,7 @@ const Contact = () => {
         </div>
 
         {/* Address */}
-        <div className="bg-white shadow-lg border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
+        <div className=" bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 flex gap-4 items-center">
           {/* <img className="w-8" src="/icons/location.svg" alt="Location" /> */}
           <p className="text-gray-800 text-sm sm:text-base">
             📍 सालीचौका, मध्य प्रदेश, भारत
