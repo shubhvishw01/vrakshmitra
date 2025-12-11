@@ -1,11 +1,23 @@
 import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 export default function Home() {
   const [scrollDir, setScrollDir] = useState("down");
 
   const [weeks, setWeeks] = useState(0);
+
+  const [events, setEvents] = useState([]);
+
+  const fetchEvents = async () => {
+    const res = await axios.get("http://localhost:5000/api/admin/upcoming");
+    setEvents(res.data);
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   useEffect(() => {
     // Starting date
@@ -191,15 +203,15 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="relative bg-[url('/images/Nature_home.jpg')] bg-cover bg-center bg-no-repeat">
+      <div className="relative bg-[url('https://static.vecteezy.com/system/resources/previews/055/827/137/non_2x/aerial-view-of-beautiful-small-town-surrounded-by-fields-and-forest-in-autumn-season-bird-eye-view-of-village-in-poland-landscape-with-residential-buildings-in-suburban-neighborhood-photo.jpg')] bg-cover bg-center bg-no-repeat">
         {/* 🌏 About Section */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="py-16 md:py-20 mx-3">
           <div
             className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md shadow-2xl rounded-4xl 
                    p-6    text-center 
-                   border border-green-300"
+                   border border-green-300 transition transform hover:-translate-y-5"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green-800 mb-4 sm:mb-6 tracking-wide">
               हमारा मिशन 🌏
@@ -225,57 +237,99 @@ export default function Home() {
           </div>
         </div>
 
-        {/* <div
-          className="max-w-md mx-auto mt-10 p-6 rounded-3xl 
-      bg-white/20 backdrop-blur-lg shadow-xl border border-white/30 
-      text-center space-y-3"
+        {/* 🌳 Planting Stats – Ultra Premium + Animated */}
+        <div
+          className="max-w-5xl mx-auto my-16 p-[2px] rounded-4xl 
+             bg-gradient-to-r from-green-300 to-green-500 dark:from-green-500 dark:to-green-600
+             shadow-2xl animate-fade-in-up"
         >
-          <h1 className="text-2xl font-bold text-green-800 tracking-wide">
-            🌱 प्रथम पौधारोपण
-          </h1>
+          <div
+            className="bg-white/80 dark:bg-black/40 backdrop-blur-xl rounded-4xl p-10 
+               transition-all duration-500 hover:shadow-3xl hover:bg-white/90
+               dark:hover:bg-black/60 hover:-translate-y-3"
+          >
+            {/* Layout */}
+            <div className="flex flex-col md:flex-row items-center gap-10">
+              {/* LEFT SECTION */}
+              <div className="flex-1 text-center md:text-left animate-slide-left">
+                <h1 className="text-4xl font-extrabold text-green-800 dark:text-green-300 tracking-wide leading-tight drop-shadow-sm">
+                  🌱 प्रथम <br /> पौधारोपण
+                </h1>
+                <p
+                  className="bg-green-100/60 dark:bg-green-900/40 
+                        px-4 py-2 rounded-2xl inline-block shadow-sm"
+                >
+                  <span className="text-green-700 dark:text-green-300 font-bold text-xl">
+                    20 जनवरी 2019
+                  </span>
+                </p>
 
-          <h2 className="text-lg font-medium text-green-700">
-            वृक्ष मित्र संस्था का{" "}
-            <span className="font-bold text-green-900">{weeks}</span> सप्ताह चल
-            रहा है
-          </h2>
+                <p className="mt-4 text-lg text-green-700 dark:text-green-200 font-medium opacity-90">
+                  वृक्ष लगाओ, पर्यावरण बचाओ🌿
+                </p>
+              </div>
 
-          <div className="pt-2 text-base font-semibold text-green-900">
-            <p>
-              सप्ताह : <span className="text-green-700">{weeks}</span>
-            </p>
-            <p>
-              Total वृक्ष रोपण :{" "}
-              <span className="text-green-700">{weeks * 10}</span>
-            </p>
+              {/* MIDDLE IMAGE */}
+              <div className="flex-1 flex justify-center animate-zoom-in">
+                <div
+                  className="p-2 rounded-3xl bg-gradient-to-br 
+                        from-green-200 to-green-100 dark:from-green-700 dark:to-green-600
+                        shadow-xl"
+                >
+                  <img
+                    src="/images/firstplantation.jpg"
+                    alt="Sapling"
+                    className="rounded-3xl w-full shadow-xl 
+                       transition-transform duration-500 hover:scale-300 hover:rotate-1"
+                  />
+                </div>
+              </div>
+
+              {/* RIGHT SECTION */}
+              <div className="flex-1 text-center md:text-right animate-slide-right">
+                <div className="text-lg font-semibold text-green-900 dark:text-green-200 space-y-3">
+                  <p
+                    className="bg-green-100/60 dark:bg-green-900/40 
+                        px-4 py-2 rounded-2xl inline-block shadow-sm"
+                  >
+                    सप्ताह :{" "}
+                    <span className="text-green-700 dark:text-green-300 font-bold text-xl">
+                      {weeks}
+                    </span>
+                  </p>
+
+                  {/* <p
+                    className="bg-green-100/60 dark:bg-green-900/40 
+                        px-4 py-2 rounded-2xl inline-block shadow-sm"
+                  >
+                    कुल वृक्ष रोपण :{" "}
+                    <span className="text-green-700 dark:text-green-300 font-bold text-xl">
+                      {weeks * 10}
+                    </span>
+                  </p> */}
+                </div>
+              </div>
+            </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Upcoming Events */}
         <div className="py-20">
-          <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
+          <div className="relative max-w-6xl mx-auto px-4 text-center text-white transition transform hover:-translate-y-5">
             <h2 className="box text-4xl font-bold text-green-300 mb-10">
               आगामी वृक्षारोपण
             </h2>
 
+            {/* 🔥 Agar events array empty hai to message center me show hoga */}
+            {events.length === 0 && (
+              <p className="text-green-400 text-center text-2xl font-semibold my-10">
+                "जल्दी ही वृक्षारोपण किया जाएगा"
+              </p>
+            )}
+
+            {/* 🌱 Events Grid */}
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  date: "25 नवम्बर 2025",
-                  place: "सालीचौका – वन उद्यान",
-                  desc: "स्थानीय विद्यालय के साथ पौधों का वृक्षारोपण",
-                },
-                {
-                  date: "27 नवम्बर 2025",
-                  place: "गाडरवारा – नदी किनारा",
-                  desc: "नर्मदा संरक्षण हेतु वृक्षारोपण अभियान",
-                },
-                {
-                  date: "30 नवम्बर 2025",
-                  place: "सालीचौका – पार्क क्षेत्र",
-                  desc: "सामाजिक समूह द्वारा हरित मिशन कार्यक्रम",
-                },
-              ].map((event, i) => (
+              {events.map((event, i) => (
                 <div
                   key={i}
                   className="box bg-white/90 rounded-2xl shadow p-8 transition hover:-translate-y-3"
@@ -293,7 +347,7 @@ export default function Home() {
 
         {/* Projects */}
         <div className="py-16">
-          <div className=" relative max-w-6xl mx-auto px-6 text-center">
+          <div className=" relative max-w-6xl mx-auto px-6 text-center transition transform hover:-translate-y-5">
             <h2 className="box text-4xl font-bold text-green-300 mb-10 text-center">
               हमारे प्रमुख प्रोजेक्ट्स
             </h2>
@@ -302,7 +356,7 @@ export default function Home() {
               {projects.map((p, i) => (
                 <div
                   key={i}
-                  className="box bg-white rounded-2xl shadow p-6 transition transform hover:-translate-y-3"
+                  className="box bg-white rounded-2xl shadow p-6 transition transform hover:-translate-y-5"
                 >
                   <img
                     src={p.img}

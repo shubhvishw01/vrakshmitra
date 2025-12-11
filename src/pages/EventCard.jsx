@@ -1,6 +1,6 @@
 import React from "react";
 
-const EventCard = React.memo(({ image, title, date, location }) => {
+const EventCard = React.memo(({ image, place, desc, date }) => {
   return (
     <div
       className="
@@ -12,8 +12,8 @@ const EventCard = React.memo(({ image, title, date, location }) => {
       {/* Image */}
       <div className="w-full h-44 overflow-hidden">
         <img
-          src={image}
-          alt={title}
+          src={`http://localhost:5000${image}`}
+          alt={place}
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
           loading="lazy"
         />
@@ -21,15 +21,16 @@ const EventCard = React.memo(({ image, title, date, location }) => {
 
       {/* Text Content */}
       <div className="p-4 text-left">
-        <h3 className="text-lg font-bold text-green-800 mb-1">{title}</h3>
+        {/* PLACE */}
+        <h3 className="text-lg font-bold text-green-800 mb-1">📍 {place}</h3>
 
+        {/* DATE */}
         <p className="text-gray-700 text-sm mb-1">
           📅 <span className="font-medium">{date}</span>
         </p>
 
-        <p className="text-gray-600 text-sm">
-          📍 <span className="font-medium">{location}</span>
-        </p>
+        {/* DESCRIPTION */}
+        <p className="text-gray-600 text-sm">📝 {desc}</p>
       </div>
     </div>
   );

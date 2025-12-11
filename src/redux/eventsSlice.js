@@ -1,12 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// 🔥 Async Thunk: Fetch Events
+// 🔥 Fetch Both Previous + Upcoming Events
 export const fetchEvents = createAsyncThunk(
   "events/fetchEvents",
   async () => {
-    const res = await fetch("/events.json");  // 👉 API URL
-    const data = await res.json();
-    return data;
+    const [pastRes, upcomingRes] = await Promise.all([
+      fetch("http://localhost:5000/api/admin/previous"),
+      fetch("http://localhost:5000/api/admin/upcoming"),
+    ]);
+
+    const pastData = await pastRes.json();
+    const upcomingData = await upcomingRes.json();
+
+    return {
+      past: Array.isArray(pastData) ? pastData : [],
+      upcoming: Array.isArray(upcomingData) ? upcomingData : [],
+    };
   }
 );
 
@@ -26,8 +35,8 @@ const eventsSlice = createSlice({
       })
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.loading = false;
-        state.past = action.payload.pastEvents;
-        state.upcoming = action.payload.upcomingEvents;
+        state.past = action.payload.past;
+        state.upcoming = action.payload.upcoming;
       })
       .addCase(fetchEvents.rejected, (state) => {
         state.loading = false;

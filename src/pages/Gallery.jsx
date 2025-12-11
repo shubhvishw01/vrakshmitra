@@ -4,7 +4,7 @@ import { fetchEvents } from "../redux/eventsSlice";
 import EventCard from "./EventCard";
 
 export default function Gallery() {
-  const [selectedType, setSelectedType] = useState("upcoming");
+  const [selectedType, setSelectedType] = useState("past");
 
   const dispatch = useDispatch();
 
@@ -14,7 +14,9 @@ export default function Gallery() {
     dispatch(fetchEvents());
   }, [dispatch]);
 
-  const events = selectedType === "past" ? past : upcoming;
+  // 🚀 SAFE EVENTS ARRAY (no crash)
+  const selectedData = selectedType === "past" ? past : upcoming;
+  const events = Array.isArray(selectedData) ? selectedData : [];
 
   return (
     <section className="max-w-5xl mx-auto text-center mt-20 py-16 px-4">
