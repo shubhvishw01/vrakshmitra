@@ -12,7 +12,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
       {/* Image */}
       <div className="w-full h-44 overflow-hidden">
         <img
-          src={`http://localhost:5000${image}`}
+          src={image}
           alt={place}
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
           loading="lazy"

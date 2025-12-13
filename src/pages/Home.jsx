@@ -1,24 +1,26 @@
 import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents } from "../redux/eventsSlice";
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  const { upcoming, loading } = useSelector((state) => state.events);
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  // safety
+  const events = Array.isArray(upcoming) ? upcoming : [];
+
   const [scrollDir, setScrollDir] = useState("down");
 
   const [weeks, setWeeks] = useState(0);
 
-  const [events, setEvents] = useState([]);
-
-  const fetchEvents = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/upcoming");
-    setEvents(res.data);
-  };
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
+  // Calculate Weeks Since First Plantation
   useEffect(() => {
     // Starting date
     const startDate = new Date(2019, 0, 20); // (year, monthIndex, day) — January = 0
@@ -253,7 +255,8 @@ export default function Home() {
               {/* LEFT SECTION */}
               <div className="flex-1 text-center md:text-left animate-slide-left">
                 <h1 className="text-4xl font-extrabold text-green-800 dark:text-green-300 tracking-wide leading-tight drop-shadow-sm">
-                  🌱 प्रथम <br /> पौधारोपण
+                  🌱प्रथम🌱
+                  <br /> पौधारोपण
                 </h1>
                 <p
                   className="bg-green-100/60 dark:bg-green-900/40 
@@ -315,23 +318,26 @@ export default function Home() {
 
         {/* Upcoming Events */}
         <div className="py-20">
-          <div className="relative max-w-6xl mx-auto px-4 text-center text-white transition transform hover:-translate-y-5">
+          <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
             <h2 className="box text-4xl font-bold text-green-300 mb-10">
               आगामी वृक्षारोपण
             </h2>
 
-            {/* 🔥 Agar events array empty hai to message center me show hoga */}
-            {events.length === 0 && (
+            {/* Loader */}
+            {loading && <p className="text-green-400 text-xl">Loading...</p>}
+
+            {/* Empty State */}
+            {!loading && events.length === 0 && (
               <p className="text-green-400 text-center text-2xl font-semibold my-10">
-                "जल्दी ही वृक्षारोपण किया जाएगा"
+                जल्दी ही वृक्षारोपण किया जाएगा
               </p>
             )}
 
-            {/* 🌱 Events Grid */}
+            {/* Events Grid */}
             <div className="grid md:grid-cols-3 gap-8">
-              {events.map((event, i) => (
+              {events.map((event) => (
                 <div
-                  key={i}
+                  key={event._id}
                   className="box bg-white/90 rounded-2xl shadow p-8 transition hover:-translate-y-3"
                 >
                   <h3 className="text-xl font-semibold text-green-800">

@@ -8,7 +8,9 @@ export default function UpcomingEvents() {
   const [form, setForm] = useState({ date: "", place: "", desc: "" });
 
   const fetchEvents = async () => {
-    const res = await axios.get("");
+    const res = await axios.get(
+      "https://vrakshmitrabackend.onrender.com/api/admin/upcoming"
+    );
     setEvents(res.data);
   };
 
@@ -33,12 +35,15 @@ export default function UpcomingEvents() {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/admin/upcoming/update/${editingId}`,
+          `https://vrakshmitrabackend.onrender.com/api/admin/upcoming/update/${editingId}`,
           form
         );
         alert("Event Updated!");
       } else {
-        await axios.post("http://localhost:5000/api/admin/upcoming/add", form);
+        await axios.post(
+          "https://vrakshmitrabackend.onrender.com/api/admin/upcoming/add",
+          form
+        );
         alert("Event Added!");
       }
       setOpen(false);
@@ -51,7 +56,9 @@ export default function UpcomingEvents() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/admin/upcoming/delete/${id}`);
+    await axios.delete(
+      `https://vrakshmitrabackend.onrender.com/api/admin/upcoming/delete/${id}`
+    );
     alert("Event Deleted!");
     fetchEvents();
   };

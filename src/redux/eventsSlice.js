@@ -5,8 +5,8 @@ export const fetchEvents = createAsyncThunk(
   "events/fetchEvents",
   async () => {
     const [pastRes, upcomingRes] = await Promise.all([
-      fetch("http://localhost:5000/api/admin/previous"),
-      fetch("http://localhost:5000/api/admin/upcoming"),
+      fetch("https://vrakshmitrabackend.onrender.com/api/admin/previous"),
+      fetch("https://vrakshmitrabackend.onrender.com/api/admin/upcoming"),
     ]);
 
     const pastData = await pastRes.json();

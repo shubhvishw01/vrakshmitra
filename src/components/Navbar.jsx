@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useLang } from "./LanguageContext";
 
 const Navbar = () => {
+  const { t, toggleLanguage, lang } = useLang();
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const location = useLocation();
@@ -65,11 +67,11 @@ const Navbar = () => {
               : "text-green-700 scale-100"
           }`}
         >
-          <span className="block leading-none">🌱 वृक्ष मित्र संस्था</span>
+          <span className="block leading-none">🌱 {t.logo.title}</span>
 
           {/* Niche Hindi text */}
           <span className="text-center block text-sm font-medium tracking-wide translate-x-3">
-            सालीचौका
+            {t.logo.city}
           </span>
           {/* Underline Hover Effect */}
           <span
@@ -100,6 +102,12 @@ const Navbar = () => {
               {link.name}
             </NavLink>
           ))}
+          {/* <button
+            onClick={toggleLanguage}
+            className="bg-white text-green-700 px-4 py-1 rounded shadow"
+          >
+            {lang === "hi" ? "Eng" : "हिंदी"}
+          </button> */}
         </div>
 
         {/* 📱 Mobile Menu Button */}

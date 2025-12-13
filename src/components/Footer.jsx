@@ -46,30 +46,19 @@ export default function Footer() {
         {/* Follow Us */}
         <div className="text-center">
           <h4 className="font-semibold mb-2">Follow Us</h4>
-          <div className="justify-center space-x-4">
-            <a
-              href="https://www.facebook.com/vrakshmitrasanstha"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-400"
-            >
-              Facebook
-            </a>
+          <div className="flex gap-4 justify-center pb-3">
             <a
               href="https://www.instagram.com/vrakshmitrasanstha"
               target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-400"
             >
-              Instagram
+              <i className="fa-brands fa-instagram text-3xl text-pink-600"></i>
             </a>
+
             <a
-              href="https://twitter.com/vrakshmitra"
+              href="https://www.facebook.com/vrakshmitrasanstha"
               target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-400"
             >
-              Twitter
+              <i className="fa-brands fa-facebook text-3xl text-blue-600"></i>
             </a>
           </div>
         </div>

@@ -15,7 +15,9 @@ export default function PreviousEvents() {
   const [file, setFile] = useState(null);
 
   const fetchEvents = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/previous");
+    const res = await axios.get(
+      "https://vrakshmitrabackend.onrender.com/api/admin/previous"
+    );
     setEvents(res.data);
   };
 
@@ -53,14 +55,14 @@ export default function PreviousEvents() {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/admin/previous/update/${editingId}`,
+          `https://vrakshmitrabackend.onrender.com/api/admin/previous/update/${editingId}`,
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         alert("Event Updated!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/admin/previous/add",
+          "https://vrakshmitrabackend.onrender.com/api/admin/previous/add",
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
@@ -70,13 +72,18 @@ export default function PreviousEvents() {
       setOpen(false);
       fetchEvents();
     } catch (err) {
-      console.error(err);
-      alert("Something went wrong!");
+      console.log("ERROR FULL:", err);
+      console.log("ERROR DATA:", err.response?.data);
+      console.log("ERROR MESSAGE:", err.message);
+
+      alert(err.response?.data?.error || err.message || "Something went wrong");
     }
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/admin/previous/delete/${id}`);
+    await axios.delete(
+      `https://vrakshmitrabackend.onrender.com/api/admin/previous/delete/${id}`
+    );
     alert("Event Deleted!");
     fetchEvents();
   };
@@ -111,7 +118,7 @@ export default function PreviousEvents() {
             >
               {event.image && (
                 <img
-                  src={`http://localhost:5000${event.image}`}
+                  src={event.image} // direct Cloudinary URL
                   alt=""
                   className="w-full h-48 object-cover rounded mb-3"
                 />
