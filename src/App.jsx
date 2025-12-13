@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -16,13 +16,17 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminRegister from "./pages/admin/AdminRegister";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { LanguageProvider } from "./components/LanguageContext";
+import LaunchScreen from "./LaunchScreen"; // 🔥 NEW
 
 function App() {
   return (
     <LanguageProvider>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* 🚀 Launch + Home */}
+          <Route path="/" element={<LaunchScreen />} />
+
+          {/* 🌿 Public Pages */}
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/volunteer" element={<Volunteer />} />
@@ -30,6 +34,9 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/episode" element={<Episode />} />
+
+          {/* 🔐 Admin */}
           <Route
             path="/dashboard"
             element={
@@ -56,7 +63,6 @@ function App() {
           />
           <Route path="/admin/adminlogin" element={<AdminLogin />} />
           <Route path="/admin/adminregister" element={<AdminRegister />} />
-          <Route path="/episode" element={<Episode />} />
         </Routes>
       </Layout>
     </LanguageProvider>

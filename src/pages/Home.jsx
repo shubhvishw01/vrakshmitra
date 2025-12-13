@@ -96,7 +96,7 @@ export default function Home() {
     {
       title: "जल संरक्षण मिशन",
       desc: "वर्षा जल संचयन और जल संरक्षण पर कार्य।",
-      img: "https://www.adda247.com/jobs/wp-content/uploads/sites/4/2022/12/14101552/List-of-Water-Conservation-Campaigns-and-Schemes.png",
+      img: "https://png.pngtree.com/thumb_back/fh260/background/20250227/pngtree-world-water-day-illustration-conservation-and-environmental-awareness-design-image_17007827.jpg",
     },
   ];
 
