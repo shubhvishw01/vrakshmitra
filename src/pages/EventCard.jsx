@@ -4,10 +4,11 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(false);
   const imgRef = useRef(null);
+  const lastTap = useRef(0);
 
   const isMobile = window.matchMedia("(pointer: coarse)").matches;
 
-  // Desktop mouse move (pan)
+  // ================= DESKTOP pan =================
   const handleMouseMove = (e) => {
     if (!zoom || !imgRef.current || isMobile) return;
 
@@ -17,6 +18,17 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
     const y = ((e.clientY - top) / height) * 100;
 
     imgRef.current.style.transformOrigin = `${x}% ${y}%`;
+  };
+
+  // ================= MOBILE double tap =================
+  const handleMobileTap = () => {
+    if (!isMobile) return;
+
+    const now = Date.now();
+    if (now - lastTap.current < 300) {
+      setZoom((z) => !z);
+    }
+    lastTap.current = now;
   };
 
   return (
@@ -47,7 +59,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
       {/* IMAGE PREVIEW */}
       {open && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center overflow-hidden">
-          {/* Close Button */}
+          {/* Close */}
           <button
             onClick={() => {
               setOpen(false);
@@ -67,12 +79,17 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
             onClick={() => !isMobile && setZoom(!zoom)}
             onMouseMove={handleMouseMove}
             /* Mobile */
-            onDoubleClick={() => isMobile && setZoom(!zoom)}
+            onTouchEnd={handleMobileTap}
             className={`
               max-w-full max-h-full rounded-xl shadow-2xl
               transition-transform duration-500
-              ${zoom ? "scale-150 cursor-zoom-out" : "scale-100 cursor-zoom-in"}
+              ${zoom ? "scale-150" : "scale-100"}
+              ${!isMobile && zoom ? "cursor-zoom-out" : ""}
+              ${!isMobile && !zoom ? "cursor-zoom-in" : ""}
             `}
+            style={{
+              touchAction: "manipulation",
+            }}
           />
         </div>
       )}
