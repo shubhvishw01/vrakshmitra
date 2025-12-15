@@ -35,7 +35,7 @@ export default function Gallery() {
             onChange={() => setSelectedType("past")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">पिछला</span>
+          <span className="text-gray-700 font-medium">पिछला वृक्षारोपण</span>
         </label>
 
         <label className="flex items-center gap-2 cursor-pointer">
@@ -47,7 +47,7 @@ export default function Gallery() {
             onChange={() => setSelectedType("upcoming")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">आगामी</span>
+          <span className="text-gray-700 font-medium">आगामी वृक्षारोपण</span>
         </label>
       </div>
 
