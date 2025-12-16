@@ -108,7 +108,7 @@ const Navbar = () => {
           ))}
           <button
             onClick={toggleLanguage}
-            className="items-right text-sm font-medium text-red-500 hover:text-yellow-600 gap-1 focus:outline-none"
+            className="items-right text-sm font-medium text-yellow-600 hover:text-red-500 gap-1 focus:outline-none"
           >
             {lang === "hi" ? "Eng" : "हिंदी"} <span className="text-xs">▼</span>
           </button>
