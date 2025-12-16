@@ -1,1 +1,127 @@
-{ "logo": { "title": "Vraksh Mitra Sanstha", "city": "SaliChauka" } }
+{
+  "logo": { "title": "Vraksh Mitra", "city": "SaliChauka" },
+  "navLinks": {
+    "home": "Home",
+    "about": "About Us",
+    "projects": "Projects",
+    "gallery": "Gallery",
+    "donate": "Donate",
+    "volunteer": "Volunteer",
+    "contact": "Contact"
+  },
+  "hero": {
+    "heading1": "Let's work together to",
+    "heading2": "Make The Earth Greener",
+    "heading3": "🌱",
+    "paragraph1": "Every planted tree is a beacon of hope for future generations.",
+    "paragraph2": "Vraksh Mitra Sanstha is a campaign dedicated to protecting the environment and planting trees.🌿",
+    "button1": "Join Us",
+    "button2": "Contribute"
+  },
+  "ourmission": {
+    "heading": "Our Mission",
+    "paragraph": "Our mission is to enrich the Earth with greenery, purify the air, and combat climate change. The goal of Vraksh Mitra Sanstha is not just to plant trees, but to revive and sustain greenery. We envision a world where every individual connects with nature and actively contributes to its protection. Through tree plantation, tree conservation, and environmental awareness, we are building a clean, safe, and balanced future for generations to come.",
+    "button": "Know More"
+  },
+  "firstplantation": {
+    "heading1": "First",
+    "heading2": "Plantation",
+    "date": "20 January 2019",
+    "paragraph": "Plant Trees, Save Environment",
+    "week": "Week"
+  },
+  "upcomingevents": {
+    "heading1": "Upcoming Plantations",
+    "heading2": "Plantations will be held soon"
+  },
+  "projects": {
+    "heading": "Our Major Projects",
+    "title1": "Tree in Every House",
+    "desc1": "Our first step towards greenery is for every family to plant a sapling.",
+    "title2": "Green School Campaign",
+    "desc2": "Teaching children to plant trees and love nature.",
+    "title3": "Water Conservation Mission",
+    "desc3": "Work on rainwater harvesting and water conservation."
+  },
+
+  "aboutcontent": {
+    "heading": "Vraksh Mitra Sanstha",
+    "paragraph1": "We are an environmental conservation organization dedicated to planting trees, caring for them, and raising awareness about nature. Our goal is to create a green, clean, and healthy future for generations to come."
+  },
+
+  "aboutfounder": {
+    "name": "Yogendra Singh",
+    "heading1": "Founder",
+    "paragraph1": "The Vriksha Mitra Sanatha was founded by environmentalist and social worker Mr.",
+    "paragraph2": "He firmly believes that every individual can contribute to the conservation of nature. Under his guidance, all the members of Vriksha Mitra are successfully running this campaign. Their objective is: *Every person should plant a tree and make the earth green again."
+  },
+
+  "aboutourmission": {
+    "heading": "Our Mission",
+    "paragraph": "Our mission is to enrich the Earth with greenery, purify the air, and combat climate change. The goal of Vraksh Mitra Sanstha is not just to plant trees, but to revive and sustain greenery. We envision a world where every individual connects with nature and actively contributes to its protection. Through tree plantation, tree conservation, and environmental awareness, we are building a clean, safe, and balanced future for generations to come."
+  },
+
+  "ourvision": {
+    "heading": "Our Vision",
+    "paragraph": "We envision a world where every individual lives in harmony with nature, protects the environment, and promotes greenery. Our goal is to create a sustainable future where trees not only benefit the environment but also empower communities. We want tree plantation to be more than just an activity—it should become a movement that inspires people to be aware of and responsible toward nature."
+  },
+
+  "ourjourney": {
+    "heading": "Our Journey",
+
+    "2019": "2019",
+    "title1": "First Plantation 🌱",
+    "desc1": "The first plantation of the organization was held on 20 January 2019. Since then, weekly plantations have been ongoing.",
+    "2020": "2020",
+
+    "title2": "100+ Trees Planted",
+    "desc2": "Tree plantation campaign conducted throughout the urban area.",
+
+    "2023": "2023",
+    "title3": "Green School Initiative",
+    "desc3": "Environmental education provided to children in schools.",
+
+    "2024": "2024",
+    "title4": "Water Conservation Drive",
+    "desc4": "Launched initiatives to promote rainwater harvesting and water conservation awareness.",
+
+    "2026": "2026",
+    "title5": "Digital Tracking System",
+    "desc5": "Now we can track the growth of every tree online."
+  },
+
+  "joinsecton": {
+    "heading1": "Let's Save the Earth Together",
+    "paragraph": "You can become part of our mission and contribute to environmental conservation. Let's make the Earth green together.",
+    "button1": "Join Us"
+  },
+
+  "Plantations": {
+    "event": "Tree Plantation",
+    "previousPlantations": "Previous",
+    "upcomingPlantations": "Upcoming"
+  },
+
+  "donate": {
+    "heading1": "Support our mission through volunteer work.",
+    "paragraph1": "The mission of Vriksha Mitra Sanstha is not just to plant trees but to raise environmental awareness and promote collective efforts. If you wish to contribute your time and effort, you are equally valuable to us.",
+    "heading2": "How can you volunteer?",
+    "option1": "• Participate in tree plantation",
+    "option2": "• Help with tree planting",
+    "option3": "• Regular watering of trees",
+    "option4": "• Provide security for trees",
+    "option5": "• Participate in cleaning and conservation campaigns",
+    "option6": "• Participate in environmental awareness programs",
+    "paragraph2": "Your service for a few hours can give life to a plant. Let's make the Earth green together.",
+    "button": "Join Us",
+    "thankyou": "Your time and effort are our greatest contribution, thank you for your support!"
+  },
+
+  "contact": {
+    "heading": "Get in Touch",
+    "paragraph1": "Vriksha Mitra Sanstha is a social movement dedicated to environmental conservation and awareness.",
+    "paragraph2": "Our mission is to plant as many trees as possible to make nature green.",
+    "paragraph3": "If you also wish to join this movement and contribute, please send your message below.",
+    "paragraph4": "Your suggestion, cooperation, and participation strengthen our mission even further."
+  }
+}

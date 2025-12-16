@@ -1,4 +1,10 @@
 const Volunteer = () => {
+  const becomeVrakshMitra = (e) => {
+    e.preventDefault();
+    alert(
+      "Thank you for your interest! Thank you for reaching out! this page is under production mode."
+    );
+  };
   return (
     <section className="max-w-3xl mx-auto text-center py-20 mt-20">
       <h1 className="text-3xl font-bold text-green-800 mb-4 ">
@@ -30,7 +36,10 @@ const Volunteer = () => {
           placeholder="Why do you want to join?"
           className="w-full border rounded px-3 py-2"
         />
-        <button className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded">
+        <button
+          onClick={becomeVrakshMitra}
+          className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded"
+        >
           Submit
         </button>
       </form>

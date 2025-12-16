@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "../components/LanguageContext.jsx";
 
 export default function About() {
+  const { t } = useLang();
   const missionRef = useRef(null);
   const visionRef = useRef(null);
   const [visibleSection, setVisibleSection] = useState({
@@ -45,14 +47,11 @@ export default function About() {
         {/* Content */}
         <div className="relative max-w-3xl px-6 transition-all duration-700">
           <h1 className="text-5xl md:text-6xl font-extrabold text-green-200 drop-shadow-md leading-tight">
-            वृक्ष मित्र संस्था 🌳
+            {t.aboutcontent.heading} 🌳
           </h1>
 
           <p className="mt-4 text-lg md:text-xl text-green-100 leading-relaxed font-medium drop-shadow-md">
-            हम एक पर्यावरण संरक्षण संगठन हैं जो पेड़ लगाने, उनकी देखभाल करने और
-            लोगों को प्रकृति के प्रति जागरूक बनाने का कार्य करते हैं। हमारा
-            उद्देश्य आने वाली पीढ़ियों के लिए एक हरा-भरा, स्वच्छ और स्वस्थ
-            भविष्य बनाना है।
+            {t.aboutcontent.paragraph1}
           </p>
         </div>
       </section>
@@ -65,16 +64,14 @@ export default function About() {
           {/* Text */}
           <div className="order-1 fade-in transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-800 mb-3 tracking-wide transition-all duration-700 hover:text-green-600">
-              संस्थापक: श्री योगेन्द्र सिंह 🙏
+              {t.aboutfounder.heading1}: {t.aboutfounder.name} 🙏
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              वृक्ष मित्र संस्था के संस्थापक{" "}
+              {t.aboutfounder.paragraph1}{" "}
               <span className="font-semibold text-green-700">
-                श्री योगेन्द्र सिंह
+                {t.aboutfounder.name}
               </span>{" "}
-              के ही मार्गदर्शन में सभी वृक्ष मित्र मिलकर इस अभियान को
-              सफलतापूर्वक संचालित कर रहे हैं। उनका उद्देश्य है — “हर व्यक्ति एक
-              वृक्ष लगाए, और धरती को फिर से हरा-भरा बनाए।” 🌱
+              {t.aboutfounder.paragraph2} 🌱
             </p>
           </div>
 
@@ -109,12 +106,10 @@ export default function About() {
 
           <div className="order-1 md:order-2 transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2 hover:text-green-600">
-              हमारा मिशन 🌏
+              {t.aboutourmission.heading} 🌏
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              हमारा मिशन धरती को हरियाली से भरना, वायु को स्वच्छ बनाना और जलवायु
-              परिवर्तन से निपटना है। वृक्ष मित्र संस्था का मानना है कि हर
-              व्यक्ति एक पौधे के माध्यम से भविष्य को हरा बना सकता है।
+              {t.aboutourmission.paragraph}
             </p>
           </div>
         </div>
@@ -129,12 +124,10 @@ export default function About() {
         >
           <div className="order-1 transition-all duration-700 hover:scale-105">
             <h2 className="text-4xl font-bold text-green-800 mb-4 flex items-center gap-2 hover:text-green-600">
-              हमारी दृष्टि 🌿
+              {t.ourvision.heading} 🌿
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              एक ऐसा समाज जहाँ हर व्यक्ति पर्यावरण के प्रति जिम्मेदार हो। हम आने
-              वाले वर्षों में लाखों पेड़ लगाने, जल संरक्षण और प्रदूषण नियंत्रण
-              के प्रति जागरूकता फैलाने का लक्ष्य रखते हैं।
+              {t.ourvision.paragraph}
             </p>
           </div>
 
@@ -156,30 +149,35 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            हमारी यात्रा 🕊️
+            {t.ourjourney.heading} 🕊️
           </motion.h2>
 
           <div className="relative border-l-4 border-green-600 pl-6">
             {[
               {
-                year: "2019",
-                title: "पहला पौधारोपण 🌱",
-                desc: "संस्था का प्रथम पौधारोपण 20 जनवरी 2019 को किया गया। तब से हर सप्ताह पौधारोपण जारी है।",
+                year: t.ourjourney.year2019,
+                title: t.ourjourney.title1,
+                desc: t.ourjourney.desc1,
               },
               {
-                year: "2020",
-                title: "100+ पौधे लगाए",
-                desc: "पूरे नगरीय क्षेत्र में वृक्षारोपण अभियान चलाया गया।",
+                year: t.ourjourney.year2020,
+                title: t.ourjourney.title2,
+                desc: t.ourjourney.desc2,
               },
               {
-                year: "2023",
-                title: "ग्रीन स्कूल इनिशिएटिव",
-                desc: "स्कूलों में बच्चों को पर्यावरण शिक्षा दी गई।",
+                year: t.ourjourney.year2023,
+                title: t.ourjourney.title3,
+                desc: t.ourjourney.desc3,
               },
               {
-                year: "2026",
-                title: "डिजिटल ट्रैकिंग सिस्टम",
-                desc: "अब हम हर पेड़ की ग्रोथ ऑनलाइन ट्रैक कर सकते हैं।",
+                year: t.ourjourney.year2024,
+                title: t.ourjourney.title4,
+                desc: t.ourjourney.desc4,
+              },
+              {
+                year: t.ourjourney.year2024late,
+                title: t.ourjourney.title5,
+                desc: t.ourjourney.desc5,
               },
             ].map((event, i) => (
               <motion.div
@@ -226,12 +224,13 @@ export default function About() {
         {/* Content */}
         <div className="relative max-w-3xl mx-auto px-6 transition-all duration-700">
           <h2 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-md">
-            आइए, मिलकर धरती को बचाएं 🌍
+            {t.joinsecton.heading1}
+            <br />
+            🌍
           </h2>
 
           <p className="mt-5 mb-10 text-green-100 text-lg md:text-xl leading-relaxed drop-shadow-md">
-            हर व्यक्ति एक पेड़ लगाए — यही धरती के लिए सबसे अनमोल उपहार है। आइए,
-            प्रकृति की इस पुकार को सुनें और मिलकर बनें एक सच्चे ‘वृक्ष मित्र’
+            {t.joinsecton.paragraph}
             🌍🌱।
           </p>
 
@@ -242,7 +241,7 @@ export default function About() {
         transition-all duration-500 hover:scale-110 hover:shadow-2xl
         ring-2 ring-yellow-300/40 hover:ring-yellow-300"
           >
-            हमारे साथ जुड़ें →
+            {t.joinsecton.button1} →
           </a>
         </div>
       </section>

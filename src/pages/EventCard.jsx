@@ -83,7 +83,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
             className={`
     max-w-full max-h-full rounded-xl shadow-2xl
     transition-transform duration-500
-    ${zoom ? "scale-150" : "scale-100"}
+    ${zoom ? "scale-200" : "scale-100"}
     ${!isMobile && zoom ? "cursor-zoom-out" : ""}
     ${!isMobile && !zoom ? "cursor-zoom-in" : ""}
   `}

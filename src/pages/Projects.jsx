@@ -1,41 +1,25 @@
+import React from "react";
+import { useLang } from "../components/LanguageContext.jsx";
+
 const Projects = () => {
+  const { t } = useLang();
   const projects = [
     {
-      title: "हर घर पेड़",
-      desc: "हर परिवार एक पौधा लगाए — यही हमारा पहला कदम है हरियाली की ओर।",
+      title: t.projects.title1,
+      desc: t.projects.desc1,
       img: "https://nonprod-media.webdunia.com/public_html/_media/hi/img/hp/home-page/2017-06/14/full/1497418216-4858.jpg",
     },
     {
-      title: "ग्रीन स्कूल अभियान",
-      desc: "बच्चों को पेड़ लगाने और प्रकृति से प्रेम करना सिखाना।",
+      title: t.projects.title2,
+      desc: t.projects.desc2,
       img: "https://www.jagranimages.com/images/newimg/25062022/25_06_2022-ytg_22835264.webp",
     },
     {
-      title: "जल संरक्षण मिशन",
-      desc: "वर्षा जल संचयन और जल संरक्षण पर कार्य।",
-      img: "https://www.adda247.com/jobs/wp-content/uploads/sites/4/2022/12/14101552/List-of-Water-Conservation-Campaigns-and-Schemes.png",
+      title: t.projects.title3,
+      desc: t.projects.desc3,
+      img: "https://png.pngtree.com/thumb_back/fh260/background/20250227/pngtree-world-water-day-illustration-conservation-and-environmental-awareness-design-image_17007827.jpg",
     },
   ];
-  // const drives = [
-  //   {
-  //     title: "Green Narsinghpur Drive",
-  //     date: "August 2025",
-  //     trees: 1500,
-  //     location: "Narsinghpur",
-  //   },
-  //   {
-  //     title: "School Campus Plantation",
-  //     date: "July 2025",
-  //     trees: 600,
-  //     location: "Khairua",
-  //   },
-  //   {
-  //     title: "Riverside Forest Revival",
-  //     date: "June 2025",
-  //     trees: 1200,
-  //     location: "Narmada Ghat",
-  //   },
-  // ];
 
   return (
     <>
@@ -65,23 +49,23 @@ const Projects = () => {
       <section className="py-16 mt-10">
         <div className="relative max-w-6xl mx-auto px-6 text-center transition-all duration-700 hover:scale-105">
           <h2 className="text-4xl font-bold mb-10 text-green-800 text-center">
-            हमारे प्रमुख प्रोजेक्ट्स 🌲
+            {t.projects.heading} 🌲
           </h2>
           <div className="grid md:grid-cols-3 gap-8 ">
-            {projects.map((p, i) => (
+            {projects.map((item, index) => (
               <div
-                key={i}
+                key={index}
                 className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transform hover:-translate-y-5 transition"
               >
                 <img
-                  src={p.img}
-                  alt={p.title}
+                  src={item.img}
+                  alt={item.title}
                   className="w-full h-48 object-cover mx-auto mb-4 rounded-xl"
                 />
                 <h3 className="text-xl font-semibold text-green-700 mb-2">
-                  {p.title}
+                  {item.title}
                 </h3>
-                <p className="text-gray-600">{p.desc}</p>
+                <p className="text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>

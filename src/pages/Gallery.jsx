@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "../redux/eventsSlice";
 import EventCard from "./EventCard";
+import { useLang } from "../components/LanguageContext.jsx";
 
 export default function Gallery() {
+  const { t } = useLang();
   const [selectedType, setSelectedType] = useState("past");
 
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ export default function Gallery() {
   return (
     <section className="max-w-5xl mx-auto text-center mt-20 py-16 px-4">
       <h1 className="text-3xl font-bold text-green-800 mb-6">
-        वृक्षारोपण कार्यक्रम 🌳
+        {t.Plantations.event} 🌳
       </h1>
 
       {/* Radio Buttons */}
@@ -35,7 +37,9 @@ export default function Gallery() {
             onChange={() => setSelectedType("past")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">पिछला वृक्षारोपण</span>
+          <span className="text-gray-700 font-medium">
+            {t.Plantations.previousPlantations}
+          </span>
         </label>
 
         <label className="flex items-center gap-2 cursor-pointer">
@@ -47,7 +51,9 @@ export default function Gallery() {
             onChange={() => setSelectedType("upcoming")}
             className="accent-green-700"
           />
-          <span className="text-gray-700 font-medium">आगामी वृक्षारोपण</span>
+          <span className="text-gray-700 font-medium">
+            {t.Plantations.upcomingPlantations}
+          </span>
         </label>
       </div>
 

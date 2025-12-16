@@ -10,15 +10,15 @@ const Navbar = () => {
   const location = useLocation();
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
-    { name: "Gallery", path: "/gallery" },
-    // { name: "Volunteer", path: "/volunteer" },
-    // { name: "Donate", path: "/donate" },
-    // { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
-    // { name: "Episode", path: "/episode" },
+    { name: `${t.navLinks.home}`, path: "/" },
+    { name: `${t.navLinks.about}`, path: "/about" },
+    { name: `${t.navLinks.projects}`, path: "/projects" },
+    { name: `${t.navLinks.gallery}`, path: "/gallery" },
+    // { name: `${t.navLinks.volunteer}`, path: "/volunteer" },
+    { name: `${t.navLinks.donate}`, path: "/donate" },
+    // { name: `${t.navLinks.blog}`, path: "/blog" },
+    { name: `${t.navLinks.contact}`, path: "/contact" },
+    // { name: `${t.navLinks.episode}`, path: "/episode" },
   ];
 
   const isHome = location.pathname === "/";
@@ -61,23 +61,27 @@ const Navbar = () => {
         {/* 🌿 Logo */}
         <NavLink
           to="/"
-          className={`text-2xl font-bold transition-all duration-700 ${
-            isHome && scrollY < 40
-              ? "text-white scale-110"
-              : "text-green-700 scale-100"
-          }`}
+          className={`font-bold transition-all duration-700 
+    text-lg sm:text-xl md:text-2xl
+    ${isHome && scrollY < 40 ? "text-white" : "text-green-700"}
+  `}
         >
-          <span className="block leading-none">🌱 {t.logo.title}</span>
+          {/* 🌱 Title */}
+          <span className="block leading-tight max-w-[180px] sm:max-w-none">
+            🌱 {t.logo.title}
+          </span>
 
-          {/* Niche Hindi text */}
-          <span className="text-center block text-sm font-medium tracking-wide translate-x-3">
+          {/* 📍 City */}
+          <span className="text-center  text-xs sm:text-sm font-medium tracking-wide">
             {t.logo.city}
           </span>
-          {/* Underline Hover Effect */}
+
+          {/* Underline */}
           <span
-            className={`mt-1 h-[2px] w-0 bg-green-500 group-hover:w-full transition-all duration-500 
-    ${isHome && scrollY < 40 ? "bg-white" : "bg-green-600"}`}
-          ></span>
+            className={`mt-1 block h-[2px] w-0 transition-all duration-500
+      ${isHome && scrollY < 40 ? "bg-white" : "bg-green-600"}
+    `}
+          />
         </NavLink>
 
         {/* 🖥️ Desktop Menu */}
@@ -88,39 +92,53 @@ const Navbar = () => {
               to={link.path}
               className={({ isActive }) =>
                 `relative font-medium transition duration-300 
-                 hover:text-green-700 after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-full 
-                 after:scale-x-0 after:bg-green-500 after:opacity-70 after:transition-transform after:duration-300 hover:after:scale-x-100 
-                 ${
-                   isActive
-                     ? "text-green-700 after:scale-x-100"
-                     : isHome && scrollY < 40
-                     ? "text-white"
-                     : "text-gray-800"
-                 }`
+              hover:text-green-700 after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-full 
+              after:scale-x-0 after:bg-green-500 after:opacity-70 after:transition-transform after:duration-300 hover:after:scale-x-100 
+              ${
+                isActive
+                  ? "text-green-700 after:scale-x-100"
+                  : isHome && scrollY < 40
+                  ? "text-white"
+                  : "text-gray-800"
+              }`
               }
             >
               {link.name}
             </NavLink>
           ))}
-          {/* <button
+          <button
             onClick={toggleLanguage}
-            className="bg-white text-green-700 px-4 py-1 rounded shadow"
+            className="items-right text-sm font-medium text-red-500 hover:text-yellow-600 gap-1 focus:outline-none"
           >
-            {lang === "hi" ? "Eng" : "हिंदी"}
-          </button> */}
+            {lang === "hi" ? "Eng" : "हिंदी"} <span className="text-xs">▼</span>
+          </button>
         </div>
 
-        {/* 📱 Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden focus:outline-none z-[60] transition-colors duration-500 ${
-            isHome && scrollY < 40 ? "text-white" : "text-green-800"
-          }`}
-        >
-          {isOpen ? <X size={30} /> : <Menu size={30} />}
-        </button>
+        {/* 📱 Mobile Actions (Language + Hamburger) */}
+        <div className="flex items-center gap-3 md:hidden z-[60]">
+          {/* 🌐 Language Toggle (RIGHT) */}
+          <button
+            onClick={toggleLanguage}
+            className={`text-xs font-semibold px-2 py-1 rounded-md transition-colors duration-300
+      ${
+        isHome && scrollY < 40
+          ? "text-white border border-white/70"
+          : "text-yellow-600 border border-green-600"
+      }`}
+          >
+            {lang === "hi" ? "EN" : "हिं"}
+          </button>
+          {/* 🍔 Hamburger Menu (LEFT) */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`focus:outline-none transition-colors duration-500 ${
+              isHome && scrollY < 40 ? "text-white" : "text-green-800"
+            }`}
+          >
+            {isOpen ? <X size={30} /> : <Menu size={30} />}
+          </button>
+        </div>
       </div>
-
       {/* 📲 Slide Menu */}
       <div
         className={`fixed top-0 right-0 h-screen w-3/4 sm:w-1/2 

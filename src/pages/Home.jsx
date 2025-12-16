@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "../redux/eventsSlice";
+import { useLang } from "../components/LanguageContext";
 
 export default function Home() {
+  const { t} = useLang();
+
   const dispatch = useDispatch();
 
   const { upcoming, loading } = useSelector((state) => state.events);
@@ -84,27 +87,27 @@ export default function Home() {
 
   const projects = [
     {
-      title: "हर घर पेड़",
-      desc: "हर परिवार एक पौधा लगाए — यही हमारा पहला कदम है हरियाली की ओर।",
+      title: t.projects.title1,
+      desc: t.projects.desc1,
       img: "https://nonprod-media.webdunia.com/public_html/_media/hi/img/hp/home-page/2017-06/14/full/1497418216-4858.jpg",
     },
     {
-      title: "ग्रीन स्कूल अभियान",
-      desc: "बच्चों को पेड़ लगाने और प्रकृति से प्रेम करना सिखाना।",
+      title: t.projects.title2,
+      desc: t.projects.desc2,
       img: "https://www.jagranimages.com/images/newimg/25062022/25_06_2022-ytg_22835264.webp",
     },
     {
-      title: "जल संरक्षण मिशन",
-      desc: "वर्षा जल संचयन और जल संरक्षण पर कार्य।",
+      title: t.projects.title3,
+      desc: t.projects.desc3,
       img: "https://png.pngtree.com/thumb_back/fh260/background/20250227/pngtree-world-water-day-illustration-conservation-and-environmental-awareness-design-image_17007827.jpg",
     },
   ];
 
   return (
     <div className="text-gray-800">
-      {/* 🌱 HERO SECTION */}
+      {/* HERO SECTION */}
       <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-        {/* 🎬 Background Video */}
+        {/* Background Video */}
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           autoPlay
@@ -124,15 +127,13 @@ export default function Home() {
           {/* LEFT */}
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-md">
-              चलो मिलकर <span className="text-green-300">धरा को हरा भरा</span>{" "}
-              बनाते हैं 🌱
+              {t.hero.heading1}{" "}
+              <span className="text-green-300">{t.hero.heading2}</span>{" "}
+              {t.hero.heading3}
             </h1>
             <p className="text-lg text-gray-100">
-              🌿"हर लगाया हुआ वृक्ष आने वाली पीढ़ियों के लिए आशा का दीप बनता
-              है।"
-              <br />
-              वृक्ष मित्र संस्था पर्यावरण की रक्षा और वृक्षारोपण को समर्पित एक
-              अभियान है।
+              "{t.hero.paragraph1}"
+              <br />"{t.hero.paragraph2}"
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -140,14 +141,14 @@ export default function Home() {
                 to="/volunteer"
                 className="bg-green-700 text-white px-5 py-3 rounded-full font-semibold hover:bg-green-800 transition"
               >
-                🌿 हमारे साथ जुड़ें
+                🌿 {t.hero.button1}
               </Link>
 
               <Link
                 to="/donate"
                 className="bg-yellow-400 text-green-900 px-5 py-3 rounded-full font-semibold hover:bg-yellow-500 transition"
               >
-                💚 सहयोग करें
+                💚 {t.hero.button2}
               </Link>
             </div>
           </div>
@@ -216,16 +217,11 @@ export default function Home() {
                    border border-green-300 transition transform hover:-translate-y-5"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green-800 mb-4 sm:mb-6 tracking-wide">
-              हमारा मिशन 🌏
+              {t.ourmission.heading} 🌏
             </h2>
 
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto px-1">
-              वृक्ष मित्र संस्था का लक्ष्य केवल पेड़ लगाना नहीं, बल्कि हरियाली
-              को फिर से जीवित करना है। हम ऐसी दुनिया बनाना चाहते हैं जहाँ हर
-              व्यक्ति प्रकृति से जुड़कर उसके संरक्षण में अपना योगदान दे। हम
-              पौधारोपण, वृक्ष संरक्षण और पर्यावरण जागरूकता के माध्यम से आने वाली
-              पीढ़ियों के लिए एक स्वच्छ, सुरक्षित और संतुलित भविष्य तैयार कर रहे
-              हैं।
+              {t.ourmission.paragraph}
             </p>
 
             <Link
@@ -234,7 +230,7 @@ export default function Home() {
               px-6 sm:px-8 py-2.5 sm:py-3 rounded-full 
               hover:bg-green-800 transition-all shadow-md hover:shadow-lg"
             >
-              और जानें →
+              {t.ourmission.button} →
             </Link>
           </div>
         </div>
@@ -255,20 +251,21 @@ export default function Home() {
               {/* LEFT SECTION */}
               <div className="flex-1 text-center md:text-left animate-slide-left">
                 <h1 className="text-4xl font-extrabold text-green-800 dark:text-green-300 tracking-wide leading-tight drop-shadow-sm">
-                  🌱प्रथम🌱
-                  <br /> पौधारोपण
+                  🌱{t.firstplantation.heading1}🌱
+                  <br />
+                  {t.firstplantation.heading2}
                 </h1>
                 <p
                   className="bg-green-100/60 dark:bg-green-900/40 
                         px-4 py-2 rounded-2xl inline-block shadow-sm"
                 >
                   <span className="text-green-700 dark:text-green-300 font-bold text-xl">
-                    20 जनवरी 2019
+                    {t.firstplantation.date}
                   </span>
                 </p>
 
                 <p className="mt-4 text-lg text-green-700 dark:text-green-200 font-medium opacity-90">
-                  वृक्ष लगाओ, पर्यावरण बचाओ🌿
+                  {t.firstplantation.paragraph}
                 </p>
               </div>
 
@@ -295,7 +292,7 @@ export default function Home() {
                     className="bg-green-100/60 dark:bg-green-900/40 
                         px-4 py-2 rounded-2xl inline-block shadow-sm"
                   >
-                    सप्ताह :{" "}
+                    {t.firstplantation.week} :{" "}
                     <span className="text-green-700 dark:text-green-300 font-bold text-xl">
                       {weeks}
                     </span>
@@ -320,7 +317,7 @@ export default function Home() {
         <div className="py-20">
           <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
             <h2 className="box text-4xl font-bold text-green-300 mb-10">
-              आगामी वृक्षारोपण
+              {t.upcomingevents.heading1}
             </h2>
 
             {/* Loader */}
@@ -329,7 +326,7 @@ export default function Home() {
             {/* Empty State */}
             {!loading && events.length === 0 && (
               <p className="text-green-400 text-center text-2xl font-semibold my-10">
-                जल्दी ही वृक्षारोपण किया जाएगा
+                {t.upcomingevents.heading2}
               </p>
             )}
 
@@ -355,24 +352,24 @@ export default function Home() {
         <div className="py-16">
           <div className=" relative max-w-6xl mx-auto px-6 text-center transition transform hover:-translate-y-5">
             <h2 className="box text-4xl font-bold text-green-300 mb-10 text-center">
-              हमारे प्रमुख प्रोजेक्ट्स
+              {t.projects.heading}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {projects.map((p, i) => (
+              {projects.map((item, index) => (
                 <div
-                  key={i}
+                  key={index}
                   className="box bg-white rounded-2xl shadow p-6 transition transform hover:-translate-y-5"
                 >
                   <img
-                    src={p.img}
-                    alt={p.title}
+                    src={item.img}
+                    alt={item.title}
                     className="w-full h-48 object-cover mb-4 rounded-xl"
                   />
                   <h3 className="text-xl font-semibold text-green-700 mb-2">
-                    {p.title}
+                    {item.title}
                   </h3>
-                  <p className="text-gray-600">{p.desc}</p>
+                  <p className="text-gray-600">{item.desc}</p>
                 </div>
               ))}
             </div>

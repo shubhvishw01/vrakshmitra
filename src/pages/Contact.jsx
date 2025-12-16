@@ -1,4 +1,11 @@
+import { useLang } from "../components/LanguageContext.jsx";
+
 const Contact = () => {
+  const { t } = useLang();
+  const handleContactUs = (e) => {
+    e.preventDefault();
+    alert("Thank you for reaching out! this page is under production mode.");
+  };
   return (
     <section className="pt-28 bg-gradient-to-b from-green-50 to-white">
       {/* MAIN SECTION */}
@@ -6,25 +13,14 @@ const Contact = () => {
         {/* LEFT: GET IN TOUCH */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl font-extrabold text-green-800 mb-6">
-            संपर्क करें🌿
+            {t.contact.heading} 🌿
           </h1>
 
           <div className="space-y-4 text-left text-gray-700 leading-relaxed">
-            <p className="font-medium">
-              1. वृक्ष मित्र संस्था पर्यावरण संरक्षण व जनजागरण के लिए समर्पित एक
-              सामाजिक अभियान है।
-            </p>
-            <p className="font-medium">
-              2. हमारा उद्देश्य अधिक से अधिक पौधारोपण कर प्रकृति को हरा-भरा
-              बनाना है।
-            </p>
-            <p className="font-medium">
-              3. यदि आप भी इस अभियान से जुड़कर सहयोग करना चाहते हैं, तो नीचे
-              अपना संदेश भेजें।
-            </p>
-            <p className=" font-medium">
-              4. आपका सुझाव, सहयोग और सहभागिता हमारे मिशन को और मजबूत बनाता है।
-            </p>
+            <p className="font-medium">1. {t.contact.paragraph1}</p>
+            <p className="font-medium">2. {t.contact.paragraph2}</p>
+            <p className="font-medium">3. {t.contact.paragraph3}</p>
+            <p className=" font-medium">4. {t.contact.paragraph4}</p>
           </div>
         </div>
 
@@ -60,6 +56,7 @@ const Contact = () => {
 
           <button
             type="submit"
+            onClick={handleContactUs}
             className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-xl 
                        text-lg font-semibold shadow-md transition-all"
           >
