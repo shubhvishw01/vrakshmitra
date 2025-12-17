@@ -9,7 +9,7 @@ const AdminContacts = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/contact")
+    fetch("https://vrakshmitrabackend.onrender.com/api/contact")
       .then((res) => res.json())
       .then((data) => {
         if (data.success) setContacts(data.contacts);

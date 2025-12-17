@@ -14,7 +14,9 @@ export default function AdminVolunteers() {
 
   const fetchVolunteers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/volunteers");
+      const res = await axios.get(
+        "https://vrakshmitrabackend.onrender.com/api/volunteers"
+      );
       setVolunteers(res.data);
     } catch (err) {
       console.error(err);
@@ -28,14 +30,18 @@ export default function AdminVolunteers() {
   }, []);
 
   const approveVolunteer = async (id) => {
-    await axios.put(`http://localhost:5000/api/volunteers/${id}/approve`);
+    await axios.put(
+      `https://vrakshmitrabackend.onrender.com/api/volunteers/${id}/approve`
+    );
     fetchVolunteers();
   };
 
   const removeVolunteer = async (id) => {
     if (!window.confirm("Are you sure you want to remove this volunteer?"))
       return;
-    await axios.delete(`http://localhost:5000/api/volunteers/${id}`);
+    await axios.delete(
+      `https://vrakshmitrabackend.onrender.com/api/volunteers/${id}`
+    );
     fetchVolunteers();
   };
 

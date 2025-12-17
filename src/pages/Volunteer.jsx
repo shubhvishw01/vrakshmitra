@@ -11,7 +11,9 @@ const VolunteersPage = () => {
 
   const fetchVolunteers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/volunteers");
+      const res = await axios.get(
+        "https://vrakshmitrabackend.onrender.com/api/volunteers"
+      );
       const approved = res.data.filter((v) => v.approved);
       setVolunteers(approved);
     } catch (err) {
