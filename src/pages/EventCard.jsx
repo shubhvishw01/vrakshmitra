@@ -3,12 +3,17 @@ import React, { useState, useRef } from "react";
 const EventCard = React.memo(({ image, place, desc, date }) => {
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(false);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [scale, setScale] = useState(1);
+  const lastDistance = useRef(0);
+
   const imgRef = useRef(null);
   const lastTap = useRef(0);
+  const start = useRef({ x: 0, y: 0 });
 
   const isMobile = window.matchMedia("(pointer: coarse)").matches;
 
-  // ================= DESKTOP pan =================
+  /* ================= DESKTOP PAN ================= */
   const handleMouseMove = (e) => {
     if (!zoom || !imgRef.current || isMobile) return;
 
@@ -20,73 +25,133 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
     imgRef.current.style.transformOrigin = `${x}% ${y}%`;
   };
 
-  // ================= MOBILE double tap =================
+  /* ================= MOBILE DOUBLE TAP ================= */
   const handleMobileTap = () => {
-    if (!isMobile) return;
-
     const now = Date.now();
     if (now - lastTap.current < 300) {
-      setZoom((z) => !z);
+      if (!zoom) {
+        setZoom(true);
+      } else {
+        setZoom(false);
+        setOpen(false);
+        setPos({ x: 0, y: 0 });
+      }
     }
     lastTap.current = now;
+  };
+
+  /* ================= MOBILE PAN ================= */
+  const handleTouchStart = (e) => {
+    if (!zoom) return;
+    const t = e.touches[0];
+    start.current = { x: t.clientX - pos.x, y: t.clientY - pos.y };
+  };
+
+  const handleTouchMove = (e) => {
+    if (!zoom) return;
+    const t = e.touches[0];
+    setPos({
+      x: t.clientX - start.current.x,
+      y: t.clientY - start.current.y,
+    });
+  };
+
+  const handlePinch = (e) => {
+    if (e.touches.length !== 2) return;
+
+    const [a, b] = e.touches;
+    const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+
+    if (lastDistance.current) {
+      const diff = dist - lastDistance.current;
+      setScale((s) => Math.min(Math.max(1, s + diff / 200), 3));
+    }
+
+    lastDistance.current = dist;
+  };
+
+  const handleTouchEnd = () => {
+    lastDistance.current = 0;
   };
 
   return (
     <>
       {/* CARD */}
-      <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-green-200 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <div className="bg-white border-green-200 shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)] rounded-xl overflow-hidden border">
         <div
-          className="relative w-full h-44 overflow-hidden cursor-pointer group"
+          className="relative w-full h-44 overflow-hidden cursor-pointer"
           onClick={() => setOpen(true)}
         >
-          <img
-            src={image}
-            alt={place}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-          />
+          <div className="relative w-full h-44 overflow-hidden group">
+            <img
+              src={image}
+              alt={place}
+              className="
+      w-full h-full object-cover
+      transition-transform duration-700 ease-out
+      group-hover:scale-110
+      will-change-transform
+    "
+            />
+          </div>
         </div>
 
-        <div className="p-4 text-left">
-          <h3 className="text-lg font-bold text-green-800 mb-1">📍 {place}</h3>
-          <p className="text-gray-700 text-sm mb-1">
-            📅 <span className="font-medium">{date}</span>
-          </p>
-          <p className="text-gray-600 text-sm">📝 {desc}</p>
+        <div className="p-4">
+          <h3 className="font-bold text-green-800">📍 {place}</h3>
+          <p className="text-sm">📅 {date}</p>
+          <p className="text-sm">📝 {desc}</p>
         </div>
       </div>
 
-      {/* IMAGE PREVIEW */}
+      {/* ================= MODAL ================= */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center overflow-hidden">
-          {/* Close */}
+        <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+          {/* CLOSE */}
           <button
             onClick={() => {
               setOpen(false);
               setZoom(false);
+              setPos({ x: 0, y: 0 });
             }}
-            className="absolute top-4 right-4 text-white text-3xl font-bold z-50"
+            className="
+    fixed top-4 right-4 
+    text-white text-3xl 
+    z-[9999]
+    bg-black/40 hover:bg-black/60
+    rounded-full w-10 h-10
+    flex items-center justify-center
+    backdrop-blur
+  "
           >
             ✕
           </button>
 
-          {/* Preview Image */}
           <img
             ref={imgRef}
             src={image}
             alt={place}
-            /* Desktop */
-            onClick={() => !isMobile && setZoom(!zoom)}
+            /* DESKTOP */
+            onClick={() => !isMobile && setZoom((z) => !z)}
             onMouseMove={handleMouseMove}
-            /* Mobile */
-            onTouchEnd={handleMobileTap}
-            className={`
-    max-w-full max-h-full rounded-xl shadow-2xl
-    transition-transform duration-500
-    ${zoom ? "scale-200" : "scale-100"}
-    ${!isMobile && zoom ? "cursor-zoom-out" : ""}
-    ${!isMobile && !zoom ? "cursor-zoom-in" : ""}
-  `}
+            /* MOBILE */
+            {...(isMobile && {
+              onTouchEnd: handleMobileTap,
+              onTouchStart: handleTouchStart,
+              onTouchMove: handleTouchMove,
+            })}
+            style={{
+              transform: isMobile
+                ? zoom
+                  ? `scale(2) translate(${pos.x / 2}px, ${pos.y / 2}px)`
+                  : "scale(1)"
+                : zoom
+                ? "scale(2)"
+                : "scale(1)",
+              transition: zoom ? "none" : "transform 0.3s ease",
+              touchAction: isMobile ? "none" : "auto",
+            }}
+            className="max-w-full max-h-full rounded-xl select-none"
+            draggable={false}
           />
         </div>
       )}

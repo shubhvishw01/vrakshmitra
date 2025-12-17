@@ -1,5 +1,5 @@
 {
-  "logo": { "title": "Vraksh Mitra", "city": "SaliChauka" },
+  "logo": { "title": "Vraksh Mitra Sanstha", "city": "SaliChauka" },
   "navLinks": {
     "home": "Home",
     "about": "About Us",
@@ -100,6 +100,12 @@
     "event": "Tree Plantation",
     "previousPlantations": "Previous",
     "upcomingPlantations": "Upcoming"
+  },
+
+  "volunteer": {
+    "heading": "Our Volunteers",
+    "paragraph": "Meet the people who are growing a greener tomorrow.",
+    "button": "Become a Volunteer"
   },
 
   "donate": {

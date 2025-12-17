@@ -6,7 +6,7 @@
     "projects": "योजनाएं",
     "gallery": "गैलरी",
     "donate": "श्रम-दान",
-    "volunteer": "वृक्षमित्र बनें",
+    "volunteer": "वृक्षमित्र",
     "contact": "संपर्क करें"
   },
 
@@ -101,6 +101,12 @@
     "event": "वृक्षारोपण कार्यक्रम",
     "previousPlantations": "पिछला वृक्षारोपण",
     "upcomingPlantations": "आगामी वृक्षारोपण"
+  },
+
+  "volunteer": {
+    "heading": "हमारे वृक्षमित्र",
+    "paragraph": "“उन लोगों से मिलिए जो हरित कल को आकार दे रहे हैं।”",
+    "button": "वृक्षमित्र बनें"
   },
 
   "donate": {

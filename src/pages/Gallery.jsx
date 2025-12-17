@@ -23,7 +23,7 @@ export default function Gallery() {
   return (
     <section className="max-w-5xl mx-auto text-center mt-20 py-16 px-4">
       <h1 className="text-3xl font-bold text-green-800 mb-6">
-        {t.Plantations.event} 🌳
+        {t.Plantations.event}🌳
       </h1>
 
       {/* Radio Buttons */}

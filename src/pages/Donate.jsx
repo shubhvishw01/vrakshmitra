@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { useLang } from "../components/LanguageContext.jsx";
 
 const Donate = () => {
   const { t } = useLang();
+  const navigate = useNavigate();
   return (
     <section className="max-w-4xl mx-auto py-20 px-6 mt-24">
       {/* Card */}
-      <div className="bg-white shadow-xl rounded-3xl p-10 border border-green-200">
+      <div className="bg-white rounded-3xl p-10 border border-green-200 shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)]">
         {/* Heading */}
         <h1 className="text-4xl font-extrabold text-green-800 mb-4">
           {t.donate.heading1} 🤝🌿
@@ -16,7 +18,7 @@ const Donate = () => {
         </p>
 
         {/* Info Box */}
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-8 max-w-xl mx-auto">
+        <div className="bg-green-50 border border-green-200 shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)] rounded-2xl p-6 mb-8 max-w-xl mx-auto">
           <h3 className="text-xl font-semibold text-green-800 text-center">
             {t.donate.heading2}
           </h3>
@@ -36,7 +38,12 @@ const Donate = () => {
         </div>
 
         {/* Button */}
-        <button className="bg-green-700 hover:bg-green-800 transition-all px-8 py-3 text-white font-semibold text-lg rounded-full shadow-md hover:shadow-lg">
+        <button
+          onClick={() =>
+            navigate("/volunteer", { state: { openJoinModal: true } })
+          }
+          className="bg-green-700 text-white px-5 py-3 rounded-full font-semibold hover:bg-green-800 transition"
+        >
           {t.donate.button}
         </button>
 

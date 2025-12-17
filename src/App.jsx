@@ -17,6 +17,8 @@ import AdminRegister from "./pages/admin/AdminRegister";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { LanguageProvider } from "./components/LanguageContext";
 import LaunchScreen from "./LaunchScreen"; // 🔥 NEW
+import VolunteerAdmin from "./pages/admin/VolunteerAdmin";
+import AdminContacts from "./pages/admin/AdminContact";
 
 function App() {
   return (
@@ -46,7 +48,7 @@ function App() {
             }
           />
           <Route
-            path="/admin/upcoming"
+            path="/dashboard/upcoming"
             element={
               <ProtectedRoute>
                 <UpcomingEvents />
@@ -54,15 +56,31 @@ function App() {
             }
           />
           <Route
-            path="/admin/previous"
+            path="/dashboard/previous"
             element={
               <ProtectedRoute>
                 <PreviousEvents />
               </ProtectedRoute>
             }
           />
-          <Route path="/admin/adminlogin" element={<AdminLogin />} />
-          <Route path="/admin/adminregister" element={<AdminRegister />} />
+          <Route
+            path="/dashboard/volunteer"
+            element={
+              <ProtectedRoute>
+                <VolunteerAdmin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/contactus"
+            element={
+              <ProtectedRoute>
+                <AdminContacts />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/dashboard/adminlogin" element={<AdminLogin />} />
+          <Route path="/dashboard/adminregister" element={<AdminRegister />} />
         </Routes>
       </Layout>
     </LanguageProvider>

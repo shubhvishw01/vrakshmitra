@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function PreviousEvents() {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
+
+  const gotoDashboard = () => {
+    navigate("/dashboard");
+  };
 
   const [form, setForm] = useState({
     date: "",
@@ -90,67 +96,86 @@ export default function PreviousEvents() {
 
   return (
     <>
-      {/* ADD BUTTON */}
-      <div className="max-w-3xl mx-auto p-10">
-        <div className="max-w-3xl mt-10 flex justify-end">
-          <button
-            onClick={openModalForAdd}
-            className="bg-green-600 text-white px-6 py-2 rounded shadow"
-          >
-            + Add Event
-          </button>
-        </div>
+      <div className="min-h-screen bg-gray-50 mt-20 px-6 py-10">
+        <div className="max-w-6xl mx-auto">
+          {/* HEADER */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <h2 className="text-3xl font-bold text-green-700">
+              Previous Events
+            </h2>
 
-        {/* EVENTS LIST */}
-        <h2 className="text-3xl font-bold mb-6 text-green-700">
-          Previous Events
-        </h2>
+            <div className="flex gap-3">
+              <button
+                onClick={openModalForAdd}
+                className="px-5 py-2 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition"
+              >
+                + Add Event
+              </button>
 
-        <div className="space-y-4">
-          {events.length === 0 && (
-            <p className="text-gray-500 text-center">No events found.</p>
-          )}
-
-          {events.map((event) => (
-            <div
-              key={event._id}
-              className="p-5 border rounded-xl shadow-md bg-white"
-            >
-              {event.image && (
-                <img
-                  src={event.image} // direct Cloudinary URL
-                  alt=""
-                  className="w-full h-48 object-cover rounded mb-3"
-                />
-              )}
-
-              <h3 className="text-xl font-bold">{event.place}</h3>
-              <p className="text-gray-700">{event.date}</p>
-              <p className="text-gray-600 mt-2">{event.desc}</p>
-
-              <div className="mt-3 flex gap-3">
-                <button
-                  onClick={() => openModalForEdit(event)}
-                  className="bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(event._id)}
-                  className="bg-red-600 text-white px-4 py-2 rounded"
-                >
-                  Delete
-                </button>
-              </div>
+              <button
+                onClick={gotoDashboard}
+                className="px-5 py-2 rounded-xl bg-yellow-400 text-white font-semibold hover:bg-yellow-500 transition"
+              >
+                ← Dashboard
+              </button>
             </div>
-          ))}
+          </div>
+
+          {/* EVENTS GRID */}
+          {events.length === 0 ? (
+            <p className="text-gray-500 text-center">No events found.</p>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {events.map((event) => (
+                <div
+                  key={event._id}
+                  className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden flex flex-col"
+                >
+                  {event.image && (
+                    <img
+                      src={event.image}
+                      alt={event.place}
+                      className="h-40 w-full object-cover"
+                    />
+                  )}
+
+                  <div className="p-4 flex-1">
+                    <h3 className="text-lg font-semibold text-green-800">
+                      {event.place}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-1">
+                      📅 {event.date}
+                    </p>
+                    <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                      {event.desc}
+                    </p>
+                  </div>
+
+                  <div className="p-4 flex gap-2">
+                    <button
+                      onClick={() => openModalForEdit(event)}
+                      className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(event._id)}
+                      className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* MODAL */}
+      {/* MODAL (same as before) */}
       {open && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg w-96 p-6">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl shadow-xl w-96 p-6">
             <h2 className="text-xl font-bold mb-4">
               {editingId ? "Edit Event" : "Add Event"}
             </h2>
@@ -158,28 +183,25 @@ export default function PreviousEvents() {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <input
                 placeholder="Place"
-                className="w-full p-3 border rounded"
+                className="w-full p-3 border rounded-lg"
                 value={form.place}
                 onChange={(e) => setForm({ ...form, place: e.target.value })}
               />
               <input
-                placeholder="Date"
                 type="date"
-                className="w-full p-3 border rounded"
+                className="w-full p-3 border rounded-lg"
                 value={form.date}
                 onChange={(e) => setForm({ ...form, date: e.target.value })}
               />
               <textarea
                 placeholder="Description"
-                className="w-full p-3 border rounded"
+                className="w-full p-3 border rounded-lg"
                 value={form.desc}
                 onChange={(e) => setForm({ ...form, desc: e.target.value })}
               />
-
-              {/* IMAGE INPUT */}
               <input
                 type="file"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded-lg"
                 onChange={(e) => setFile(e.target.files[0])}
               />
 
@@ -187,13 +209,13 @@ export default function PreviousEvents() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                  className="px-4 py-2 bg-gray-500 text-white rounded-lg"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-4 py-2 rounded"
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg"
                 >
                   {editingId ? "Update Event" : "Add Event"}
                 </button>

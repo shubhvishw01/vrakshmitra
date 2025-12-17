@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "../redux/eventsSlice";
 import { useLang } from "../components/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const { t} = useLang();
+  const { t } = useLang();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -139,6 +141,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
                 to="/volunteer"
+                state={{ openJoinModal: true }}
                 className="bg-green-700 text-white px-5 py-3 rounded-full font-semibold hover:bg-green-800 transition"
               >
                 🌿 {t.hero.button1}

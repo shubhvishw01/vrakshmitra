@@ -12,9 +12,9 @@ const Navbar = () => {
   const navLinks = [
     { name: `${t.navLinks.home}`, path: "/" },
     { name: `${t.navLinks.about}`, path: "/about" },
-    { name: `${t.navLinks.projects}`, path: "/projects" },
+    // { name: `${t.navLinks.projects}`, path: "/projects" },
     { name: `${t.navLinks.gallery}`, path: "/gallery" },
-    // { name: `${t.navLinks.volunteer}`, path: "/volunteer" },
+    { name: `${t.navLinks.volunteer}`, path: "/volunteer" },
     { name: `${t.navLinks.donate}`, path: "/donate" },
     // { name: `${t.navLinks.blog}`, path: "/blog" },
     { name: `${t.navLinks.contact}`, path: "/contact" },
@@ -53,35 +53,52 @@ const Navbar = () => {
         WebkitBackdropFilter: `blur(${isHome ? blurValue : 8}px)`,
         boxShadow:
           scrollY > 60
-            ? "0 4px 20px rgba(0,0,0,0.1)"
+            ? "0 4px 20px rgba(0,0,0,0.3)"
             : "0 0px 0px rgba(0,0,0,0)",
       }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 transition-all duration-700">
         {/* 🌿 Logo */}
+
         <NavLink
           to="/"
-          className={`font-bold transition-all duration-700 
-    text-lg sm:text-xl md:text-2xl
+          className={`
+    flex flex-col items-center
+    transition-all duration-500 ease-in-out
+    whitespace-nowrap
+    ${scrollY > 40 ? "scale-[0.85]" : "scale-100"}
     ${isHome && scrollY < 40 ? "text-white" : "text-green-700"}
   `}
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          {/* 🌱 Title */}
-          <span className="block leading-tight max-w-[180px] sm:max-w-none">
-            🌱 {t.logo.title}
+          {/* 🔠 Main Title */}
+          <img
+            src="/images/vmsLogo_bg1.png"
+            alt="Vraksh Mitra Sanstha Logo"
+            className="w-10 h-10 mb-1"
+          />
+          <span
+            className={`
+      font-semibold
+      text-sm sm:text-base
+      leading-tight
+      transition-all duration-500
+    `}
+          >
+            {t.logo.title}
           </span>
-
-          {/* 📍 City */}
-          <span className="text-center  text-xs sm:text-sm font-medium tracking-wide">
+          {/* 📝 Subtitle */}
+          <span
+            className={`
+      text-[10px] sm:text-xs
+      font-medium
+      tracking-wide
+      text-center
+      transition-all duration-500
+    `}
+          >
             {t.logo.city}
           </span>
-
-          {/* Underline */}
-          <span
-            className={`mt-1 block h-[2px] w-0 transition-all duration-500
-      ${isHome && scrollY < 40 ? "bg-white" : "bg-green-600"}
-    `}
-          />
         </NavLink>
 
         {/* 🖥️ Desktop Menu */}
@@ -108,7 +125,7 @@ const Navbar = () => {
           ))}
           <button
             onClick={toggleLanguage}
-            className="items-right text-sm font-medium text-yellow-600 hover:text-red-500 gap-1 focus:outline-none"
+            className="items-right text-sm font-medium  text-yellow-600 hover:text-red-500 gap-1 focus:outline-none"
           >
             {lang === "hi" ? "Eng" : "हिंदी"} <span className="text-xs">▼</span>
           </button>

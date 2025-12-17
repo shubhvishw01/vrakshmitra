@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "../components/LanguageContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
   const { t } = useLang();
+  const navigate = useNavigate();
   const missionRef = useRef(null);
   const visionRef = useRef(null);
   const [visibleSection, setVisibleSection] = useState({
@@ -234,15 +236,14 @@ export default function About() {
             🌍🌱।
           </p>
 
-          <a
-            href="/volunteer"
-            className="inline-block bg-yellow-400 text-green-900 px-10 py-3
-        rounded-full font-semibold shadow-xl hover:bg-yellow-500
-        transition-all duration-500 hover:scale-110 hover:shadow-2xl
-        ring-2 ring-yellow-300/40 hover:ring-yellow-300"
+          <button
+            onClick={() =>
+              navigate("/volunteer", { state: { openJoinModal: true } })
+            }
+            className="bg-green-700 text-white px-5 py-3 rounded-full font-semibold hover:bg-green-800 transition"
           >
-            {t.joinsecton.button1} →
-          </a>
+            🌿 {t.joinsecton.button1}
+          </button>
         </div>
       </section>
     </div>

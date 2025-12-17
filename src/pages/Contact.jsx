@@ -1,16 +1,54 @@
 import { useLang } from "../components/LanguageContext.jsx";
+import { useState } from "react";
 
 const Contact = () => {
   const { t } = useLang();
-  const handleContactUs = (e) => {
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+
+  const handleContactUs = async (e) => {
     e.preventDefault();
-    alert("Thank you for reaching out! this page is under production mode.");
+    setLoading(true);
+    setSuccess("");
+
+    const form = e.target;
+
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      message: form.message.value,
+    };
+
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setSuccess("✅ Message sent successfully!");
+        form.reset(); // ✅ reset after submit
+      } else {
+        alert(data.message || "Something went wrong!");
+      }
+    } catch (error) {
+      alert("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <section className="pt-28 bg-gradient-to-b from-green-50 to-white">
-      {/* MAIN SECTION */}
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start p-4">
-        {/* LEFT: GET IN TOUCH */}
+        {/* LEFT */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl font-extrabold text-green-800 mb-6">
             {t.contact.heading} 🌿
@@ -20,47 +58,56 @@ const Contact = () => {
             <p className="font-medium">1. {t.contact.paragraph1}</p>
             <p className="font-medium">2. {t.contact.paragraph2}</p>
             <p className="font-medium">3. {t.contact.paragraph3}</p>
-            <p className=" font-medium">4. {t.contact.paragraph4}</p>
+            <p className="font-medium">4. {t.contact.paragraph4}</p>
           </div>
         </div>
 
-        {/* RIGHT: FORM */}
-        <form className="w-full p-8 bg-white rounded-3xl shadow-[0px_0px_9px_0px_#001A6E] border border-green-100 space-y-5">
+        {/* RIGHT FORM */}
+        <form
+          onSubmit={handleContactUs}
+          className="w-full p-8 bg-white rounded-3xl shadow-[0px_0px_9px_0px_#001A6E] border border-green-100 space-y-5"
+        >
           <input
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-700 
-                       focus:ring-2 focus:ring-green-500 focus:outline-none shadow-sm"
+            name="name"
+            required
+            className="w-full border border-gray-300 rounded-xl px-4 py-3"
             placeholder="Your Name"
             type="text"
           />
 
           <input
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-700 
-                       focus:ring-2 focus:ring-green-500 focus:outline-none shadow-sm"
+            name="email"
+            required
+            className="w-full border border-gray-300 rounded-xl px-4 py-3"
             placeholder="Email"
             type="email"
           />
 
           <input
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-700 
-                       focus:ring-2 focus:ring-green-500 focus:outline-none shadow-sm"
+            name="phone"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3"
             placeholder="Contact Number"
             type="text"
           />
 
           <textarea
+            name="message"
+            required
             rows="5"
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-700 
-                       focus:ring-2 focus:ring-green-500 focus:outline-none shadow-sm resize-none"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 resize-none"
             placeholder="Message"
           ></textarea>
 
+          {success && (
+            <p className="text-green-700 text-sm font-semibold">{success}</p>
+          )}
+
           <button
             type="submit"
-            onClick={handleContactUs}
-            className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-xl 
-                       text-lg font-semibold shadow-md transition-all"
+            disabled={loading}
+            className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-xl text-lg font-semibold transition-all"
           >
-            Send Message →
+            {loading ? "Sending..." : "Send Message →"}
           </button>
         </form>
       </div>
@@ -105,7 +152,7 @@ const Contact = () => {
           className="w-full h-[350px] md:h-[450px]"
           loading="lazy"
           allowFullScreen
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.197301852487!2d78.2320497!3d22.6092312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397e5113caeb8d67%3A0xc8659b0f2e5ba37!2sSalichouka%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1704987562107!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3495.188810559489!2d78.67789424841683!3d22.834673990492295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397facdfa2d608cb%3A0x799befdb5fd87bc6!2sRMPG%2B6XG%2C%20Babai%20Kalan%2C%20Madhya%20Pradesh%20487881!5e1!3m2!1sen!2sin!4v1765992812755!5m2!1sen!2sin"
         ></iframe>
       </div>
     </section>
