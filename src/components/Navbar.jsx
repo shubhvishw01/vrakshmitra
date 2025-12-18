@@ -57,46 +57,35 @@ const Navbar = () => {
             : "0 0px 0px rgba(0,0,0,0)",
       }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 transition-all duration-700">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* 🌿 Logo */}
-
         <NavLink
           to="/"
           className={`
-    flex flex-col items-center
-    transition-all duration-500 ease-in-out
-    whitespace-nowrap
-    ${scrollY > 40 ? "scale-[0.85]" : "scale-100"}
-    ${isHome && scrollY < 40 ? "text-white" : "text-green-700"}
-  `}
+      flex flex-col items-center
+      w-[160px] sm:w-[180px]   /* 🔒 FIXED WIDTH */
+      text-center
+      whitespace-nowrap
+      transition-transform duration-500 ease-in-out
+      ${scrollY > 40 ? "scale-[0.85]" : "scale-100"}
+      ${isHome && scrollY < 40 ? "text-white" : "text-green-700"}
+    `}
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          {/* 🔠 Main Title */}
+          {/* Logo Image */}
           <img
             src="/images/vmsLogo_bg1.png"
             alt="Vraksh Mitra Sanstha Logo"
             className="w-10 h-10 mb-1"
           />
-          <span
-            className={`
-      font-semibold
-      text-sm sm:text-base
-      leading-tight
-      transition-all duration-500
-    `}
-          >
+
+          {/* Title */}
+          <span className="font-semibold text-sm sm:text-base leading-tight block">
             {t.logo.title}
           </span>
-          {/* 📝 Subtitle */}
-          <span
-            className={`
-      text-[10px] sm:text-xs
-      font-medium
-      tracking-wide
-      text-center
-      transition-all duration-500
-    `}
-          >
+
+          {/* Subtitle */}
+          <span className="text-[10px] sm:text-xs font-medium tracking-wide block">
             {t.logo.city}
           </span>
         </NavLink>
@@ -145,7 +134,7 @@ const Navbar = () => {
           >
             {lang === "hi" ? "EN" : "हिं"}
           </button>
-          {/* 🍔 Hamburger Menu (LEFT) */}
+          {/* Hamburger Menu (LEFT) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`focus:outline-none transition-colors duration-500 ${

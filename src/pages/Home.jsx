@@ -106,7 +106,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="text-gray-800">
+    <div>
       {/* HERO SECTION */}
       <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -122,15 +122,17 @@ export default function Home() {
         </video>
 
         {/* Dark Overlay (optimized, no backdrop filters) */}
-        <div className="absolute inset-0 bg-black/50 z-0"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* 🌿 Hero Content */}
+        {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-0 px-6 py-16 md:py-24 text-white">
           {/* LEFT */}
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-md">
+            <h1 className="text-4xl  font-bold leading-tight drop-shadow-md">
               {t.hero.heading1}{" "}
-              <span className="text-green-300">{t.hero.heading2}</span>{" "}
+              <span className="text-green-300 md:text-5xl">
+                {t.hero.heading2}
+              </span>{" "}
               {t.hero.heading3}
             </h1>
             <p className="text-lg text-gray-100">
@@ -209,9 +211,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="relative bg-[url('https://static.vecteezy.com/system/resources/previews/055/827/137/non_2x/aerial-view-of-beautiful-small-town-surrounded-by-fields-and-forest-in-autumn-season-bird-eye-view-of-village-in-poland-landscape-with-residential-buildings-in-suburban-neighborhood-photo.jpg')] bg-cover bg-center bg-no-repeat">
+      <div className="relative bg-[url('/images/bg.home.jpg')] bg-cover bg-center bg-no-repeat">
         {/* 🌏 About Section */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
 
         <div className="py-16 md:py-20 mx-3">
           <div

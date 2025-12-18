@@ -29,8 +29,8 @@ const VolunteersPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-green-700 font-semibold">
-        Loading volunteers...
+      <div className="flex justify-center items-center py-16">
+        <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
