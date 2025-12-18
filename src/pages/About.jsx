@@ -177,7 +177,7 @@ export default function About() {
                 desc: t.ourjourney.desc4,
               },
               {
-                year: t.ourjourney.year2024late,
+                year: t.ourjourney.year2026,
                 title: t.ourjourney.title5,
                 desc: t.ourjourney.desc5,
               },
