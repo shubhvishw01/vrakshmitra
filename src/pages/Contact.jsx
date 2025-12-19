@@ -120,11 +120,19 @@ const Contact = () => {
         {/* Email */}
         <div
           className="bg-white shadow-[0px_0px_3px_0px_#001A6E] border border-green-100 rounded-2xl p-5 
-                  flex flex-col items-center justify-center text-center"
+                flex flex-col items-center justify-center text-center"
         >
-          <p className="text-gray-800 text-sm sm:text-base break-all">
-            <a href="mailto:vrakshmitra@gmail.com">📧 vrakshmitra@gmail.com</a>
-          </p>
+          <a
+            href="mailto:vrakshmitrasanstha@gmail.com"
+            className="
+      text-gray-800 text-sm sm:text-base
+      break-words
+      hover:text-green-700
+      transition
+    "
+          >
+            📧 vrakshmitrasanstha@gmail.com
+          </a>
         </div>
 
         {/* Phone */}
@@ -133,7 +141,12 @@ const Contact = () => {
                   flex flex-col items-center justify-center text-center"
         >
           <p className="text-gray-800 text-sm sm:text-base">
-            <a href="tel:+918103384532">📞 +91 81033 84532</a>
+            <a
+              href="tel:+918103384532"
+              className="hover:text-green-700 transition"
+            >
+              📞 +91 81033 84532
+            </a>
           </p>
         </div>
 
@@ -152,7 +165,7 @@ const Contact = () => {
       <div className="w-full mx-auto mt-16  overflow-hidden shadow-xl border border-green-200">
         <iframe
           title="location"
-          className="w-full h-[350px] md:h-[450px]"
+          className="w-full h-[400px] md:h-[600px]"
           loading="lazy"
           allowFullScreen
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3495.188810559489!2d78.67789424841683!3d22.834673990492295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397facdfa2d608cb%3A0x799befdb5fd87bc6!2sRMPG%2B6XG%2C%20Babai%20Kalan%2C%20Madhya%20Pradesh%20487881!5e1!3m2!1sen!2sin!4v1765992812755!5m2!1sen!2sin"

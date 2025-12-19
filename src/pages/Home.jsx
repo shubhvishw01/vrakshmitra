@@ -167,7 +167,7 @@ export default function Home() {
           {/* RIGHT — optimized blur + rotation */}
           <div className="md:w-1/2 flex justify-center relative">
             {/* Aura Effect (Highly optimized) */}
-            <motion.div
+            {/* <motion.div
               className="absolute w-80 h-80 md:w-[28rem] md:h-[28rem] rounded-full bg-green-600/20 blur-2xl"
               style={{ willChange: "transform" }}
               animate={{ scale: 1.05 }}
@@ -177,15 +177,16 @@ export default function Home() {
                 duration: 10,
                 ease: "easeInOut",
               }}
-            />
+            /> */}
 
             {/* Earth */}
+
             <motion.div
-              className="relative aspect-square w-64 sm:w-72 md:w-96 rounded-full overflow-hidden"
-              style={{ willChange: "transform" }}
+              className="mt-8 relative aspect-square w-70 sm:w-72 md:w-130 rounded-full overflow-hidden"
+              // style={{ willChange: "transform" }}
               animate={{ rotate: 360 }}
               transition={{
-                duration: 80,
+                duration: 70,
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -194,16 +195,18 @@ export default function Home() {
                 src="/images/earth.webp"
                 alt="Earth"
                 className="w-full h-full object-cover rounded-full"
-                style={{
-                  filter: "brightness(1) saturate(1)",
-                  willChange: "filter, transform",
-                }}
+                style={
+                  {
+                    // filter: "brightness(1) saturate(1)",
+                    // willChange: "filter, transform",
+                  }
+                }
                 animate={{
                   filter: [
-                    "brightness(0.95) saturate(0.95)",
-                    "brightness(1.1) saturate(1.2)",
+                    // "brightness(0.95) saturate(0.95)",
+                    // "brightness(1.1) saturate(1.2)",
                   ],
-                  scale: [1, 1.02, 1], // subtle breathing effect
+                  // scale: [1, 1.02, 1], // subtle breathing effect
                 }}
                 transition={{
                   duration: 6,
@@ -332,7 +335,7 @@ export default function Home() {
             </h2>
             {/* Loader Overlay */}
             {loading && (
-              <div className="absolute inset-0 flex items-center justify-center z-30 bg-transparent my-10">
+              <div className=" inset-0 flex items-center justify-center z-30 bg-transparent my-10">
                 <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
               </div>
             )}

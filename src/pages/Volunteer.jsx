@@ -28,16 +28,14 @@ const VolunteersPage = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center py-16">
-        <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
+    <div className="flex justify-center items-center py-16">
+      <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+    </div>;
   }
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white px-6 mt-16 py-16">
+      <div className=" bg-gradient-to-b from-green-50 to-white px-6 mt-16 py-16">
         {/* 🔹 Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h1 className="text-4xl md:text-3xl font-bold text-green-800 mb-4">
@@ -61,7 +59,11 @@ const VolunteersPage = () => {
         </div>
 
         {/* 🔹 Volunteers Grid */}
-        {volunteers.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center items-center py-16">
+            <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : volunteers.length === 0 ? (
           <p className="text-center text-gray-500">No volunteers found.</p>
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
