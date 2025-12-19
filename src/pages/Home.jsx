@@ -21,7 +21,7 @@ export default function Home() {
   // safety
   const events = Array.isArray(upcoming) ? upcoming : [];
 
-  const [scrollDir, setScrollDir] = useState("down");
+  const [scrollDir, setScrollDir] = useState("up");
 
   const [weeks, setWeeks] = useState(0);
 
@@ -104,6 +104,12 @@ export default function Home() {
       img: "https://png.pngtree.com/thumb_back/fh260/background/20250227/pngtree-world-water-day-illustration-conservation-and-environmental-awareness-design-image_17007827.jpg",
     },
   ];
+
+  useEffect(() => {
+    if (!loading) {
+      window.dispatchEvent(new Event("scroll"));
+    }
+  }, [loading]);
 
   return (
     <div>
@@ -324,9 +330,12 @@ export default function Home() {
             <h2 className="box text-4xl font-bold text-green-300 mb-10">
               {t.upcomingevents.heading1}
             </h2>
-
-            {/* Loader */}
-            {loading && <p className="text-green-400 text-xl">Loading...</p>}
+            {/* Loader Overlay */}
+            {loading && (
+              <div className="absolute inset-0 flex items-center justify-center z-30 bg-transparent my-10">
+                <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
 
             {/* Empty State */}
             {!loading && events.length === 0 && (
@@ -335,8 +344,12 @@ export default function Home() {
               </p>
             )}
 
-            {/* Events Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* Events Grid (ALWAYS IN DOM) */}
+            <div
+              className={`grid md:grid-cols-3 gap-8 transition-opacity duration-300 ${
+                loading ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+            >
               {events.map((event) => (
                 <div
                   key={event._id}
