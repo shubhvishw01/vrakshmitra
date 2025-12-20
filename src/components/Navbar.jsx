@@ -76,7 +76,7 @@ const Navbar = () => {
           <img
             src="/images/vmsLogo_bg1.png"
             alt="Vraksh Mitra Sanstha Logo"
-            className="w-10 h-10 mb-1"
+            className="w-8 h-7 mb-1"
           />
 
           {/* Title */}
@@ -141,6 +141,7 @@ const Navbar = () => {
               isHome && scrollY < 40 ? "text-white" : "text-green-800"
             }`}
           >
+            
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
         </div>

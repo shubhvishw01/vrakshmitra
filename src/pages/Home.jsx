@@ -128,7 +128,7 @@ export default function Home() {
         </video>
 
         {/* Dark Overlay (optimized, no backdrop filters) */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
 
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-0 px-6 py-16 md:py-24 text-white">

@@ -90,7 +90,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
   const handleMobileTap = () => {
     const now = Date.now();
 
-    if (now - lastTap.current < 300) {
+    if (now - lastTap.current < 400) {
       setZoom((z) => !z);
       setScale(2);
       setPos({ x: 0, y: 0 });
@@ -139,7 +139,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
 
       if (lastDistance.current) {
         const diff = dist - lastDistance.current;
-        setScale((s) => Math.min(Math.max(1, s + diff / 200), 3));
+        setScale((s) => Math.min(Math.max(1, s + diff / 300), 5));
       }
 
       lastDistance.current = dist;
