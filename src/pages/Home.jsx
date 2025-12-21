@@ -124,7 +124,7 @@ export default function Home() {
           playsInline
           preload="metadata"
         >
-          <source src="/videos/home1280.webm" type="video/webm" />
+          <source src="/videos/homebg1.webm" type="video/webm" />
         </video>
 
         {/* Dark Overlay (optimized, no backdrop filters) */}
@@ -157,7 +157,7 @@ export default function Home() {
 
               <Link
                 to="/donate"
-                className="bg-yellow-400 text-green-900 px-5 py-3 rounded-full font-semibold hover:bg-yellow-500 transition"
+                className="bg-yellow-400 text-green-900 px-5 py-3 rounded-full font-semibold hover:bg-yellow-600 transition"
               >
                 💚 {t.hero.button2}
               </Link>
