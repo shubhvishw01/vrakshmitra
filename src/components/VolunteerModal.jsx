@@ -74,7 +74,7 @@ const VolunteerModal = ({ onClose }) => {
     try {
       setLoading(true);
       await axios.post(
-        "http://vrakshmitrabackend.onrender.com/api/volunteers",
+        "https://vrakshmitrabackend.onrender.com/api/volunteers",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
