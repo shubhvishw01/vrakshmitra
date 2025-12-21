@@ -17,7 +17,7 @@ export default function AdminRegister() {
         form
       );
       setMsg("Admin Created Successfully!");
-      navigate("/admin/adminlogin");
+      navigate("/dashboard/adminlogin");
     } catch (err) {
       setError("Something went wrong");
     }

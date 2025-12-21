@@ -86,12 +86,12 @@ const VolunteersPage = () => {
                 {/* 🔹 Content (compact spacing) */}
                 <div className="px-4 py-3">
                   {/* Name */}
-                  <h3 className="text-base font-semibold text-green-800 leading-tight">
+                  <h3 className="text-3xl font-semibold text-green-800 leading-tight">
                     {v.name}
                   </h3>
 
                   {/* City */}
-                  <div className="text-sm text-gray-700 mt-0.5 font-medium">
+                  <div className="text- text-gray-700 mt-0.5 font-medium">
                     {v.city}
                   </div>
 
