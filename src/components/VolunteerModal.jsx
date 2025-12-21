@@ -73,9 +73,13 @@ const VolunteerModal = ({ onClose }) => {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/volunteers", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        "http://vrakshmitrabackend.onrender.com/api/volunteers",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       // ✅ Save submit date
       localStorage.setItem(todayKey, today);
