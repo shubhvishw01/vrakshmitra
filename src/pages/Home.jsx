@@ -28,7 +28,7 @@ export default function Home() {
   // Calculate Weeks Since First Plantation
   useEffect(() => {
     // Starting date
-    const startDate = new Date(2019, 0, 20); // (year, monthIndex, day) — January = 0
+    const startDate = new Date(2019, 0, 13); // (year, monthIndex, day) — January = 0
     const today = new Date();
 
     const diffTime = today - startDate; // milliseconds

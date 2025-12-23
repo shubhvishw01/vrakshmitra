@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       keyframes: {
@@ -29,6 +26,22 @@ module.exports = {
         "slide-left": "slideLeft 0.7s ease-out",
         "slide-right": "slideRight 0.7s ease-out",
         "zoom-in": "zoomIn 0.7s ease-out",
+      },
+    },
+    theme: {
+      extend: {
+        keyframes: {
+          shake: {
+            "0%, 100%": { transform: "translateX(0)" },
+            "20%": { transform: "translateX(-4px)" },
+            "40%": { transform: "translateX(4px)" },
+            "60%": { transform: "translateX(-4px)" },
+            "80%": { transform: "translateX(4px)" },
+          },
+        },
+        animation: {
+          shake: "shake 0.3s ease-in-out",
+        },
       },
     },
   },

@@ -66,42 +66,97 @@ const VolunteersPage = () => {
         ) : volunteers.length === 0 ? (
           <p className="text-center text-gray-500">No volunteers found.</p>
         ) : (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+          <div
+            className=" grid grid-cols-2        /* 📱 Mobile → 2 cards */
+    gap-4                  /* Mobile gap */
+    sm:gap-6
+    md:grid-cols-3         /* Tablet */
+    lg:grid-cols-4         /* Desktop */
+    max-w-6xl mx-auto
+    px-3 sm:px-0 text-sm sm:text-base"
+          >
             {volunteers.map((v) => (
               <div
                 key={v._id}
-                className="group bg-white rounded-xl overflow-hidden border 
-                border-green-200 shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)] transition-all duration-300"
+                className="
+    group relative bg-white rounded-2xl overflow-hidden
+    
+    shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)]
+    hover:shadow-[0_20px_60px_rgba(34,197,94,0.45)]
+    transition-all duration-300 ease-out
+    hover:-translate-y-1
+  "
               >
-                {/* 🔹 Square Profile Image (smaller) */}
-                <div className="relative w-full aspect-[1/1] max-h-screen overflow-hidden">
+                {/* 🌿 Image Section */}
+                <div className="relative w-full aspect-[1/1] overflow-hidden">
                   <img
                     src={v.profileImage}
                     alt={v.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="
+        w-full h-full object-cover
+        transition-transform duration-700
+        group-hover:scale-110
+      "
                   />
-                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition" />
+
+                  {/* Gradient Overlay */}
+                  <div
+                    className="
+        absolute inset-0
+        bg-gradient-to-t from-black/40 via-black/10 to-transparent
+        opacity-70
+      "
+                  />
+
+                  {/* Floating City Badge */}
+                  <span
+                    className="
+        absolute bottom-3 left-3
+        bg-white/90 backdrop-blur
+        text-green-800 text-xs font-semibold
+        px-3 py-1 rounded-full shadow
+      "
+                  >
+                    📍 {v.city}
+                  </span>
                 </div>
 
-                {/* 🔹 Content (compact spacing) */}
-                <div className="px-4 py-3">
+                {/* 🌱 Content */}
+                <div className="px-4 py-4">
                   {/* Name */}
-                  <h3 className="text-3xl font-semibold text-green-800 leading-tight">
+                  <h3
+                    className="
+         font-bold text-green-900
+        tracking-wide leading-snug
+      "
+                  >
                     {v.name}
                   </h3>
 
-                  {/* City */}
-                  <div className="text- text-gray-700 mt-0.5 font-medium">
-                    {v.city}
-                  </div>
+                  {/* Divider */}
+                  <div className="w-20 h-1 bg-green-500 rounded-full my-2" />
 
-                  {/* Reason (shorter) */}
+                  {/* Reason */}
                   {v.reason && (
-                    <p className="mt-2 text-xs text-gray-600 italic leading-snug line-clamp-2">
+                    <p
+                      className="
+          text-sm text-gray-600 italic
+          leading-relaxed line-clamp-3
+        "
+                    >
                       “{v.reason}”
                     </p>
                   )}
                 </div>
+
+                {/* 🌟 Soft Glow */}
+                <div
+                  className="
+      absolute inset-0 rounded-2xl
+      ring-1 ring-green-400/20
+      pointer-events-none
+    "
+                />
               </div>
             ))}
           </div>
