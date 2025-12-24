@@ -15,7 +15,7 @@ export default function Dashboard() {
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <h1 className="text-4xl font-extrabold text-green-800 tracking-wide">
-            🌿 Admin Panel
+            🌿 Admin Dashboard
           </h1>
 
           <button
