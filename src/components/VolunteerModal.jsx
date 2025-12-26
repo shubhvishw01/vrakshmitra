@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { X, CheckCircle } from "lucide-react";
 import axios from "axios";
+import { useLang } from "../components/LanguageContext";
 
 const VolunteerModal = ({ onClose }) => {
+  const { t } = useLang();
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -153,10 +155,9 @@ Thank you for joining the green movement 💚
       localStorage.setItem(todayKey, today);
 
       // 🎉 Success animation
-      setSuccess(true);
 
       setTimeout(() => {
-        onClose();
+        onClose(); // ✅ close after line completely empty
       }, 5000);
     } catch (err) {
       setErrors({
@@ -177,7 +178,6 @@ Thank you for joining the green movement 💚
 
       if (value <= 0) {
         clearInterval(interval);
-        onClose(); // ✅ line completely empty hone ke baad close
       }
     }, 100);
   };
@@ -233,10 +233,10 @@ Thank you for joining the green movement 💚
           <>
             {/* Header */}
             <h2 className="text-2xl font-bold text-green-800 mb-1">
-              Join as Volunteer 🌱
+              {t.volunteermodal.heading} 🌱
             </h2>
             <p className="text-sm text-gray-600 mb-6">
-              Fill the form and be part of the green movement.
+              {t.volunteermodal.paragraph}
             </p>
 
             {/* STEP PROGRESS BAR */}
@@ -286,7 +286,7 @@ Thank you for joining the green movement 💚
                         />
                       ) : (
                         <span className="text-xs text-gray-400 text-center px-2">
-                          Upload Photo
+                          {t.volunteermodal.upload}
                         </span>
                       )}
                     </div>
@@ -296,7 +296,7 @@ Thank you for joining the green movement 💚
                         className="cursor-pointer bg-green-600 text-white 
                               px-4 py-2 rounded-lg text-sm hover:bg-green-700"
                       >
-                        Upload Photo
+                        {t.volunteermodal.upload}
                         <input
                           type="file"
                           accept="image/*"
@@ -319,7 +319,7 @@ Thank you for joining the green movement 💚
                     <div ref={nameRef} className="flex flex-col leading-tight">
                       <input
                         type="text"
-                        placeholder="Full Name"
+                        placeholder={t.volunteermodal.fullname}
                         value={formData.name}
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
@@ -341,7 +341,7 @@ Thank you for joining the green movement 💚
                     <div ref={emailRef} className="flex flex-col leading-tight">
                       <input
                         type="email"
-                        placeholder="Email Address"
+                        placeholder={t.volunteermodal.email}
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
@@ -366,7 +366,7 @@ Thank you for joining the green movement 💚
                       <input
                         type="tel"
                         maxLength={10}
-                        placeholder="Mobile Number"
+                        placeholder={t.volunteermodal.mobile}
                         value={formData.mobile}
                         onChange={(e) =>
                           setFormData({ ...formData, mobile: e.target.value })
@@ -386,7 +386,7 @@ Thank you for joining the green movement 💚
                     <div ref={cityRef} className="flex flex-col leading-tight">
                       <input
                         type="text"
-                        placeholder="City"
+                        placeholder={t.volunteermodal.city}
                         value={formData.city}
                         onChange={(e) =>
                           setFormData({ ...formData, city: e.target.value })
@@ -404,8 +404,9 @@ Thank you for joining the green movement 💚
                     </div>
 
                     <textarea
-                      placeholder="Why do you want to join?"
+                      placeholder={t.volunteermodal.whyjoin}
                       value={formData.reason}
+                      maxLength={100}
                       onChange={(e) =>
                         setFormData({ ...formData, reason: e.target.value })
                       }
@@ -417,15 +418,6 @@ Thank you for joining the green movement 💚
       `}
                     />
 
-                    {/* <button
-                      disabled={loading}
-                      type="submit"
-                      className="sm:col-span-2 w-full py-3 rounded-xl 
-                         bg-green-700 text-white font-semibold 
-                         disabled:opacity-60"
-                    >
-                      {loading ? "Submitting..." : "Submit"}
-                    </button> */}
                     <button
                       type="button"
                       onClick={() => {
@@ -437,7 +429,7 @@ Thank you for joining the green movement 💚
                          bg-green-700 text-white font-semibold 
                          disabled:opacity-60"
                     >
-                      Next →
+                      {t.volunteermodal.button} →
                     </button>
                   </div>
                 </form>
@@ -447,14 +439,14 @@ Thank you for joining the green movement 💚
             {step === 2 && (
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-green-800">
-                  Please confirm the following
+                  {t.volunteermodal.confirm}
                 </h3>
 
                 {[
-                  "I will actively participate in plantation drives",
-                  "I will respect nature and environment",
-                  "I agree to work honestly as a volunteer",
-                  "I will follow organization rules",
+                  t.volunteermodal.a,
+                  t.volunteermodal.b,
+                  t.volunteermodal.c,
+                  t.volunteermodal.d,
                 ].map((text, i) => {
                   const key = `c${i + 1}`;
                   return (
@@ -474,9 +466,9 @@ Thank you for joining the green movement 💚
                 <button
                   disabled={!Object.values(checks).every(Boolean)}
                   onClick={() => setStep(3)}
-                  className="w-full py-3 rounded-xl bg-blue-600 text-white font-semibold disabled:opacity-50"
+                  className="w-full py-3 rounded-xl bg-green-800 text-white font-semibold disabled:opacity-50"
                 >
-                  Next →
+                  {t.volunteermodal.button} →
                 </button>
 
                 <button
@@ -493,12 +485,10 @@ Thank you for joining the green movement 💚
         {step === 3 && (
           <div className="space-y-5">
             <h3 className="text-lg font-semibold text-green-800">
-              Confirm & Submit
+              {t.volunteermodal.confirm2}
             </h3>
 
-            <p className="text-sm text-gray-600">
-              Please confirm that all information provided by you is correct.
-            </p>
+            <p className="text-sm text-gray-600">{t.volunteermodal.cnfpara}</p>
 
             <label className="flex items-start gap-3">
               <input
@@ -507,7 +497,7 @@ Thank you for joining the green movement 💚
                 onChange={(e) => setAgree(e.target.checked)}
               />
               <span className="text-sm">
-                I agree to the <b>Terms & Conditions</b>
+                {t.volunteermodal.agree} <b>{t.volunteermodal.tnc}</b>
               </span>
             </label>
 

@@ -108,6 +108,27 @@
     "button": "Become a Volunteer"
   },
 
+  "volunteermodal": {
+    "heading": "Join as Volunteer",
+    "paragraph": "Fill the form and be part of the green movement.",
+    "upload": "Upload Photo",
+    "fullname": "Full Name",
+    "email": "Email Address",
+    "mobile": "Mobile Number",
+    "city": "City/Town",
+    "whyjoin": "Why do you want to join?",
+    "confirm1": "Please confirm the following",
+    "a": "I will actively participate in plantation drives",
+    "b": "I will respect nature and environment",
+    "c": "I agree to work honestly as a volunteer",
+    "d": "I will follow organization rules",
+    "confirm2": "Confirm & Submit",
+    "cnfpara": "Please confirm that all information provided by you is correct.",
+    "agree": "I agree to the ",
+    "tnc": "Terms & conditions",
+    "button": "Next"
+  },
+
   "donate": {
     "heading1": "Support our mission through volunteer work.",
     "paragraph1": "The mission of Vriksha Mitra Sanstha is not just to plant trees but to raise environmental awareness and promote collective efforts. If you wish to contribute your time and effort, you are equally valuable to us.",

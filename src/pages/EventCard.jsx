@@ -133,7 +133,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
     }
 
     // PINCH
-    if (e.touches.length === 2) {
+    if (e.touches.length === 1) {
       const [a, b] = e.touches;
       const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
 
@@ -153,7 +153,7 @@ const EventCard = React.memo(({ image, place, desc, date }) => {
   return (
     <>
       {/* CARD */}
-      <div className="bg-white border-green-200 shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)] rounded-xl overflow-hidden border">
+      <div className="bg-white shadow-[0px_0px_35px_0px_rgb(47_74_46/90%)] rounded-xl overflow-hidden">
         <div
           className="group relative w-full h-44 overflow-hidden cursor-pointer"
           onClick={() => {
