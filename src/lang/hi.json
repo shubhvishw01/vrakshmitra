@@ -28,12 +28,13 @@
     "heading1": "प्रथम",
     "heading2": "पौधारोपण",
     "date": "20 जनवरी 2019",
-    "paragraph": "वृक्ष लगाओ, पर्यावरण बचाओ",
+    "paragraph1": "हर सप्ताह एक संकल्प, हर पौधा एक भविष्य",
+    "paragraph2": "वृक्ष लगाओ, पर्यावरण बचाओ",
     "week": "सप्ताह"
   },
   "upcomingevents": {
     "heading1": "आगामी वृक्षारोपण",
-    "heading2": "जल्दी ही वृक्षारोपण किया जाएगा"
+    "heading2": "जल्दी ही वृक्षारोपण किया जाएगा..."
   },
   "projects": {
     "heading": "हमारे प्रमुख प्रोजेक्ट्स",
@@ -100,7 +101,8 @@
   "Plantations": {
     "event": "वृक्षारोपण कार्यक्रम",
     "previousPlantations": "पिछला वृक्षारोपण",
-    "upcomingPlantations": "आगामी वृक्षारोपण"
+    "upcomingPlantations": "आगामी वृक्षारोपण",
+    "loadingStatus": "जल्दी ही वृक्षारोपण किया जाएगा..."
   },
 
   "volunteer": {

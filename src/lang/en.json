@@ -1,5 +1,5 @@
 {
-  "logo": { "title": "Vraksh Mitra Sanstha", "city": "SaliChauka" },
+  "logo": { "title": "Vraksh Mitra Sanstha", "city": "SaliChouka" },
   "navLinks": {
     "home": "Home",
     "about": "About Us",
@@ -27,12 +27,13 @@
     "heading1": "First",
     "heading2": "Plantation",
     "date": "20 January 2019",
-    "paragraph": "Plant Trees, Save Environment",
+    "paragraph1": "Plant Trees, Save Environment",
+    "paragraph2": "Plant Trees, Save Environment",
     "week": "Week"
   },
   "upcomingevents": {
     "heading1": "Upcoming Plantations",
-    "heading2": "Plantations will be held soon"
+    "heading2": "Plantations will be held soon..."
   },
   "projects": {
     "heading": "Our Major Projects",
@@ -99,7 +100,8 @@
   "Plantations": {
     "event": "Tree Plantation",
     "previousPlantations": "Previous",
-    "upcomingPlantations": "Upcoming"
+    "upcomingPlantations": "Upcoming",
+    "loadingStatus": "Plantations will be held soon..."
   },
 
   "volunteer": {

@@ -32,6 +32,17 @@ const VolunteerModal = ({ onClose }) => {
   const [agree, setAgree] = useState(false);
   const [progress, setProgress] = useState(100);
 
+  useEffect(() => {
+    localStorage.setItem("volunteer_draft", JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("volunteer_draft");
+    if (saved) setFormData(JSON.parse(saved));
+  }, []);
+
+  localStorage.removeItem("volunteer_draft");
+
   const sendWhatsAppConfirmation = () => {
     const phone = formData.mobile; // 10 digit Indian number
 
@@ -244,9 +255,12 @@ Thank you for joining the green movement 💚
               {[1, 2, 3].map((s) => (
                 <div key={s} className="flex-1 flex items-center">
                   <div
-                    className={`w-8 h-8 flex items-center justify-center rounded-full 
-        text-sm font-semibold
-        ${step >= s ? "bg-green-600 text-white" : "bg-gray-200 text-gray-500"}`}
+                    className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold
+                      ${
+                        step >= s
+                          ? "bg-green-600 text-white"
+                          : "bg-gray-200 text-gray-500"
+                      }`}
                   >
                     {s}
                   </div>
@@ -254,7 +268,7 @@ Thank you for joining the green movement 💚
                   {s !== 3 && (
                     <div
                       className={`flex-1 h-1 mx-2 rounded
-          ${step > s ? "bg-green-600" : "bg-gray-200"}`}
+                      ${step > s ? "bg-green-600" : "bg-gray-200"}`}
                     />
                   )}
                 </div>
@@ -269,7 +283,7 @@ Thank you for joining the green movement 💚
               <>
                 {/* FORM */}
                 <form
-                  onSubmit={handleSubmit}
+                  onSubmit={(e) => e.preventDefault()}
                   className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 >
                   {/* LEFT – PHOTO */}
@@ -503,6 +517,7 @@ Thank you for joining the green movement 💚
 
             <button
               disabled={!agree || loading}
+              type="button"
               onClick={handleSubmit}
               className="w-full py-3 rounded-xl bg-green-700 text-white font-semibold disabled:opacity-50"
             >

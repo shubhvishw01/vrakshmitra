@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
 /* Home */
-
-/* Episode */
 .box {
   opacity: 0;
   transform: translateX(-80px);
-  transition: all 0.6s ease-out;
+  transition: all 0.7s ease-out;
+}
+.box2 {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 0.7s ease-out;
+}
+
+.box2.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* viewport से बाहर होने पर */

@@ -264,7 +264,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center gap-10">
               {/* LEFT SECTION */}
               <div className="flex-1 text-center md:text-left animate-slide-left">
-                <h1 className="text-4xl font-extrabold text-green-800 dark:text-green-300 tracking-wide leading-tight drop-shadow-sm">
+                <h1 className="text-4xl font-extrabold text-green-800 dark:text-green-300 tracking-wide leading-tight drop-shadow-sm mb-5">
                   🌱{t.firstplantation.heading1}🌱
                   <br />
                   {t.firstplantation.heading2}
@@ -278,23 +278,23 @@ export default function Home() {
                   </span>
                 </p>
 
-                <p className="mt-4 text-lg text-green-700 dark:text-green-200 font-medium opacity-90">
-                  {t.firstplantation.paragraph}
-                </p>
+                {/* <p className="mt-4 text-lg text-green-700 dark:text-green-200 font-medium opacity-90">
+                  {t.firstplantation.paragraph1}
+                </p> */}
               </div>
 
               {/* MIDDLE IMAGE */}
-              <div className="flex-1 flex justify-center animate-zoom-in">
+              <div className="box flex-1 flex justify-center animate-zoom-in">
                 <div
                   className="p-2 rounded-3xl bg-gradient-to-br 
-                        from-green-200 to-green-100 dark:from-green-700 dark:to-green-600
-                        shadow-xl"
+                  from-green-200 to-green-100 dark:from-green-700 dark:to-green-600
+                  shadow-xl"
                 >
                   <img
                     src="/images/firstplantation.jpg"
                     alt="Sapling"
                     className="rounded-3xl w-full shadow-xl 
-                       transition-transform duration-500 hover:scale-300 hover:rotate-1"
+                    transition-transform duration-500 hover:scale-300 hover:rotate-1"
                   />
                 </div>
               </div>
@@ -304,12 +304,15 @@ export default function Home() {
                 <div className="text-lg font-semibold text-green-900 dark:text-green-200 space-y-3">
                   <p
                     className="bg-green-100/60 dark:bg-green-900/40 
-                        px-4 py-2 rounded-2xl inline-block shadow-sm"
+                    px-4 py-2 rounded-2xl inline-block shadow-sm"
                   >
                     {t.firstplantation.week} :{" "}
                     <span className="text-green-700 dark:text-green-300 font-bold text-xl">
                       {weeks}
                     </span>
+                  </p>
+                  <p className="mt-4 text-lg text-green-700 dark:text-green-200 font-medium">
+                    "{t.firstplantation.paragraph2}"
                   </p>
 
                   {/* <p
@@ -335,14 +338,14 @@ export default function Home() {
             </h2>
             {/* Loader Overlay */}
             {loading && (
-              <div className=" inset-0 flex items-center justify-center z-30 bg-transparent my-10">
+              <div className="box inset-0 flex items-center justify-center z-30 bg-transparent my-10">
                 <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
               </div>
             )}
 
             {/* Empty State */}
             {!loading && events.length === 0 && (
-              <p className="text-green-400 text-center text-2xl font-semibold my-10">
+              <p className="box inline-block text-green-400 text-center border border-amber-300 rounded-3xl text-xl font-semibold px-4 py-1">
                 {t.upcomingevents.heading2}
               </p>
             )}

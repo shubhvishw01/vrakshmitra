@@ -66,7 +66,9 @@ export default function Gallery() {
         <>
           {/* No Events Case */}
           {events.length === 0 ? (
-            <p className="text-gray-600 text-lg">कोई डेटा उपलब्ध नहीं है</p>
+            <p className="text-gray-600 text-lg">
+              {t.Plantations.loadingStatus}
+            </p>
           ) : (
             <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
               {events.map((event, i) => (

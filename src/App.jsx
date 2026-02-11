@@ -26,7 +26,7 @@ function App() {
       <Layout>
         <Routes>
           {/* 🚀 Launch + Home */}
-          <Route path="/" element={<LaunchScreen />} />
+          <Route path="/" element={<Home />} />
 
           {/* 🌿 Public Pages */}
           <Route path="/about" element={<About />} />

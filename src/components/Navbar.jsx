@@ -141,7 +141,6 @@ const Navbar = () => {
               isHome && scrollY < 40 ? "text-white" : "text-green-800"
             }`}
           >
-            
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
         </div>
