@@ -26,7 +26,7 @@ const VolunteersPage = () => {
 
   useEffect(() => {
     fetchVolunteers();
-  }, []);
+  });
 
   if (loading) {
     <div className="flex justify-center items-center py-16">

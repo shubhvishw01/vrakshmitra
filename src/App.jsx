@@ -46,39 +46,13 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/dashboard/upcoming"
-            element={
-              <ProtectedRoute>
-                <UpcomingEvents />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard/previous"
-            element={
-              <ProtectedRoute>
-                <PreviousEvents />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard/volunteer"
-            element={
-              <ProtectedRoute>
-                <VolunteerAdmin />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard/contactus"
-            element={
-              <ProtectedRoute>
-                <AdminContacts />
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route index element={<div>Welcome Admin 👋</div>} />
+            <Route path="upcoming" element={<UpcomingEvents />} />
+            <Route path="previous" element={<PreviousEvents />} />
+            <Route path="volunteer" element={<VolunteerAdmin />} />
+            <Route path="contactus" element={<AdminContacts />} />
+          </Route>
           <Route path="/dashboard/adminlogin" element={<AdminLogin />} />
           <Route path="/dashboard/adminregister" element={<AdminRegister />} />
         </Routes>

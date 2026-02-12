@@ -1,8 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
-import { CalendarDays, History, LogOut, Users } from "lucide-react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import {
+  CalendarDays,
+  History,
+  Users,
+  LogOut,
+  Mail,
+  Menu,
+  X,
+} from "lucide-react";
+import { useState } from "react";
 
-export default function Dashboard() {
+export default function AdminLayout() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
@@ -10,91 +20,123 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-200 p-6 flex justify-center items-start mt-15">
-      <div className="w-full max-w-4xl bg-white/70 backdrop-blur-lg shadow-2xl rounded-2xl p-10 mt-10 border border-white/40">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="text-4xl font-extrabold text-green-800 tracking-wide">
-            🌿 Admin Dashboard
-          </h1>
+    <div className="flex">
+      {/* ✅ MOBILE OVERLAY */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 bg-red-500 text-white py-2 px-5 
-                       rounded-xl shadow-md hover:bg-red-600 hover:shadow-lg 
-                       transition-all duration-200 active:scale-95"
-          >
-            <LogOut size={20} />
-            Logout
+      {/* 🔹 SIDEBAR */}
+      <div
+        className={`
+          fixed top-24 right-0 z-50
+          w-64
+          h-[calc(90vh-4rem)]
+          bg-white shadow-lg p-6
+          flex flex-col justify-between
+          border-r
+          transition-transform duration-300
+          
+          ${isOpen ? "translate-x-0" : "translate-x-full"}
+          md:translate-x-0 md:left-0 md:right-auto
+        `}
+      >
+        {/* Close button mobile */}
+        <div className="md:hidden flex justify-end mb-4">
+          <button onClick={() => setIsOpen(false)}>
+            <X size={22} />
           </button>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mt-6">
-          {/* Upcoming Events */}
-          <Link
-            to="/dashboard/upcoming"
-            className="group p-8 rounded-2xl shadow-lg bg-white border border-green-200 
-                       hover:border-green-400 hover:shadow-2xl hover:bg-green-50 
-                       transition-all duration-300 flex flex-col items-center"
-          >
-            <CalendarDays
-              size={50}
-              className="text-green-700 group-hover:scale-110 transition"
-            />
-            <h2 className="text-2xl font-semibold text-green-900 mt-4">
-              Upcoming Events
-            </h2>
-          </Link>
+        <div>
+          <h2 className="text-2xl font-bold text-green-700 mb-8">
+            Admin Panel
+          </h2>
 
-          {/* Previous Events */}
-          <Link
-            to="/dashboard/previous"
-            className="group p-8 rounded-2xl shadow-lg bg-white border border-blue-200 
-                       hover:border-blue-400 hover:shadow-2xl hover:bg-blue-50 
-                       transition-all duration-300 flex flex-col items-center"
-          >
-            <History
-              size={50}
-              className="text-blue-700 group-hover:scale-110 transition"
+          <nav className="flex flex-col gap-4">
+            <SidebarLink
+              to="upcoming"
+              icon={<CalendarDays size={18} />}
+              text="Upcoming Events"
+              closeSidebar={() => setIsOpen(false)}
             />
-            <h2 className="text-2xl font-semibold text-blue-900 mt-4">
-              Previous Events
-            </h2>
-          </Link>
-
-          {/* Volunteers */}
-          <Link
-            to="/dashboard/volunteer"
-            className="group p-8 rounded-2xl shadow-lg bg-white border border-emerald-200 
-                       hover:border-emerald-400 hover:shadow-2xl hover:bg-emerald-50 
-                       transition-all duration-300 flex flex-col items-center"
-          >
-            <Users
-              size={50}
-              className="text-emerald-700 group-hover:scale-110 transition"
+            <SidebarLink
+              to="previous"
+              icon={<History size={18} />}
+              text="Previous Events"
+              closeSidebar={() => setIsOpen(false)}
             />
-            <h2 className="text-2xl font-semibold text-emerald-900 mt-4">
-              Volunteers
-            </h2>
-          </Link>
-          {/* Contact */}
-          <Link
-            to="/dashboard/contactus"
-            className="group p-8 rounded-2xl shadow-lg bg-white border border-emerald-200 
-                       hover:border-emerald-400 hover:shadow-2xl hover:bg-emerald-50 
-                       transition-all duration-300 flex flex-col items-center"
-          >
-            <Users
-              size={50}
-              className="text-emerald-700 group-hover:scale-110 transition"
+            <SidebarLink
+              to="volunteer"
+              icon={<Users size={18} />}
+              text="Volunteers"
+              closeSidebar={() => setIsOpen(false)}
             />
-            <h2 className="text-2xl font-semibold text-emerald-900 mt-4">
-              Contactus
-            </h2>
-          </Link>
+            <SidebarLink
+              to="contactus"
+              icon={<Mail size={18} />}
+              text="Contact Us"
+              closeSidebar={() => setIsOpen(false)}
+            />
+          </nav>
         </div>
+
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
+      </div>
+
+      {/* 🔹 RIGHT CONTENT */}
+      <div
+        className="
+          flex-1
+          md:ml-64
+          mt-20
+          p-6 md:p-8
+          w-full
+          h-[calc(100vh-4rem)]
+          overflow-y-auto
+          bg-gray-50
+        "
+      >
+        {/* Hamburger Button (Mobile Only) */}
+        <div className="fixed top-25 right-4 md:hidden z-40">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="p-2 rounded-lg bg-white shadow"
+          >
+            <Menu size={28} />
+          </button>
+        </div>
+
+        <Outlet />
       </div>
     </div>
+  );
+}
+
+function SidebarLink({ to, icon, text, closeSidebar }) {
+  return (
+    <NavLink
+      to={to}
+      onClick={closeSidebar}
+      className={({ isActive }) =>
+        `flex items-center gap-3 px-4 py-2 rounded-lg transition ${
+          isActive
+            ? "bg-green-200 text-green-900 font-semibold"
+            : "text-gray-700 hover:bg-green-100"
+        }`
+      }
+    >
+      {icon}
+      {text}
+    </NavLink>
   );
 }
