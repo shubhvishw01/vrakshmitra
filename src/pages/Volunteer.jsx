@@ -60,27 +60,30 @@ const VolunteersPage = () => {
         </div>
 
         {/* 🔹 Volunteers Grid */}
-        {loading ? (
-          <div className="flex justify-center items-center py-16">
-            <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        ) : volunteers.length === 0 ? (
-          <p className="text-center text-gray-500">No volunteers found.</p>
-        ) : (
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 /* 📱 Mobile → 2 cards */
+
+        <div>
+          {loading ? (
+            <div className="flex justify-center items-center py-16">
+              <div className="w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : volunteers.length === 0 ? (
+            <p className="text-center text-gray-500">No volunteers found.</p>
+          ) : (
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 /* 📱 Mobile → 2 cards */
     gap-4                  /* Mobile gap */
     sm:gap-6
     md:grid-cols-3         /* Tablet */
     lg:grid-cols-4         /* Desktop */
     max-w-6xl mx-auto
     px-3 sm:px-0 text-sm sm:text-base"
-          >
-            {volunteers.map((v, index) => (
-              <VolunteerCard key={v._id} v={v} index={index} />
-            ))}
-          </div>
-        )}
+            >
+              {volunteers.map((v, index) => (
+                <VolunteerCard key={v._id} v={v} index={index} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 🔹 Volunteer Modal */}

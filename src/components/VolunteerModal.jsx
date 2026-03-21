@@ -159,7 +159,7 @@ Thank you for joining the green movement 💚
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
-        }
+        },
       );
 
       // ✅ Save submit date
@@ -206,7 +206,7 @@ Thank you for joining the green movement 💚
         className="relative bg-white rounded-2xl shadow-2xl 
     w-full max-w-lg md:max-w-3xl lg:max-w-4xl
     p-4 sm:p-6 md:p-8 z-10
-    max-h-[90vh] overflow-y-auto"
+    max-h-[90vh] overflow-y-auto min-h-[600px]"
       >
         {/* Close */}
         <button
@@ -251,28 +251,33 @@ Thank you for joining the green movement 💚
             </p>
 
             {/* STEP PROGRESS BAR */}
-            <div className="flex items-center justify-between mb-6">
-              {[1, 2, 3].map((s) => (
-                <div key={s} className="flex-1 flex items-center">
+            {/* STEP PROGRESS BAR */}
+            <div className="relative mb-8">
+              {/* Background Gray Line */}
+              <div className="absolute top-4 left-0 w-full h-1 bg-gray-200 rounded"></div>
+
+              {/* Animated Green Progress Line */}
+              <div
+                className="absolute top-4 left-0 h-1 bg-green-600 rounded transition-all duration-500 ease-in-out"
+                style={{
+                  width: `${((step - 1) / 2) * 100}%`,
+                }}
+              ></div>
+
+              {/* Step Circles */}
+              <div className="relative flex justify-between">
+                {[1, 2, 3].map((s) => (
                   <div
-                    className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold
-                      ${
-                        step >= s
-                          ? "bg-green-600 text-white"
-                          : "bg-gray-200 text-gray-500"
-                      }`}
+                    key={s}
+                    className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold z-10
+          ${
+            step >= s ? "bg-green-600 text-white" : "bg-gray-200 text-gray-500"
+          }`}
                   >
                     {s}
                   </div>
-
-                  {s !== 3 && (
-                    <div
-                      className={`flex-1 h-1 mx-2 rounded
-                      ${step > s ? "bg-green-600" : "bg-gray-200"}`}
-                    />
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {errors.general && (

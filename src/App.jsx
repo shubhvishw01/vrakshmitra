@@ -47,7 +47,14 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<div>Welcome Admin 👋</div>} />
+            <Route
+              index
+              element={
+                <div>
+                  <h3>Welcome Admin</h3> 👋
+                </div>
+              }
+            />
             <Route path="upcoming" element={<UpcomingEvents />} />
             <Route path="previous" element={<PreviousEvents />} />
             <Route path="volunteer" element={<VolunteerAdmin />} />
@@ -58,7 +65,7 @@ function App() {
         </Routes>
       </Layout>
     </LanguageProvider>
-  );
+  ); 
 }
 
 export default App;
