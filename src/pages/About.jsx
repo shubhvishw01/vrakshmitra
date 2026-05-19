@@ -24,7 +24,7 @@ export default function About() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (missionRef.current) observer.observe(missionRef.current);
@@ -34,9 +34,9 @@ export default function About() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800 pt-15 overflow-hidden">
+    <div className="bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800 overflow-hidden">
       {/* Header Section */}
-      <section className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80')] 

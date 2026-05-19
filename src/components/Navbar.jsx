@@ -21,7 +21,8 @@ const Navbar = () => {
     // { name: `${t.navLinks.episode}`, path: "/episode" },
   ];
 
-  const isHome = location.pathname === "/";
+  const transparentPages = ["/", "/about"];
+  const isTransparent = transparentPages.includes(location.pathname);
 
   // ✅ Optimized scroll listener with requestAnimationFrame
   useEffect(() => {
@@ -46,11 +47,11 @@ const Navbar = () => {
     <nav
       className="fixed top-0 left-0 w-full z-50 transition-all duration-700 will-change-transform will-change-backdrop-filter"
       style={{
-        backgroundColor: isHome
+        backgroundColor: isTransparent
           ? `rgba(255,255,255,${bgOpacity})`
           : "rgba(255,255,255,0.9)",
-        backdropFilter: `blur(${isHome ? blurValue : 8}px)`,
-        WebkitBackdropFilter: `blur(${isHome ? blurValue : 8}px)`,
+        backdropFilter: `blur(${isTransparent ? blurValue : 8}px)`,
+        WebkitBackdropFilter: `blur(${isTransparent ? blurValue : 8}px)`,
         boxShadow:
           scrollY > 60
             ? "0 4px 20px rgba(0,0,0,0.3)"
@@ -68,7 +69,7 @@ const Navbar = () => {
       whitespace-nowrap
       transition-transform duration-500 ease-in-out
       ${scrollY > 40 ? "scale-[0.85]" : "scale-100"}
-      ${isHome && scrollY < 40 ? "text-white" : "text-green-700"}
+      ${isTransparent && scrollY < 40 ? "text-white" : "text-green-700"}
     `}
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
@@ -103,9 +104,9 @@ const Navbar = () => {
               ${
                 isActive
                   ? "text-green-700 after:scale-x-100"
-                  : isHome && scrollY < 40
-                  ? "text-white"
-                  : "text-gray-800"
+                  : isTransparent && scrollY < 40
+                    ? "text-white"
+                    : "text-gray-800"
               }`
               }
             >
@@ -127,7 +128,7 @@ const Navbar = () => {
             onClick={toggleLanguage}
             className={`text-xs font-semibold px-2 py-1 rounded-md transition-colors duration-300
       ${
-        isHome && scrollY < 40
+        isTransparent && scrollY < 40
           ? "text-white border border-white/70"
           : "text-yellow-600 border border-green-600"
       }`}
@@ -138,7 +139,7 @@ const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`focus:outline-none transition-colors duration-500 ${
-              isHome && scrollY < 40 ? "text-white" : "text-green-800"
+              isTransparent && scrollY < 40 ? "text-white" : "text-green-800"
             }`}
           >
             {isOpen ? <X size={30} /> : <Menu size={30} />}
