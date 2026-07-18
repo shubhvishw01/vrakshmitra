@@ -3,13 +3,24 @@
 /* Home */
 .box {
   opacity: 0;
-  transform: translateX(-80px);
-  transition: all 0.7s ease-out;
+  transform: translate3d(-72px, 0, 0);
+  transition:
+    opacity 0.55s ease-out,
+    transform 0.55s ease-out;
+  will-change: opacity, transform;
+}
+
+.box.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 .box2 {
   opacity: 0;
   transform: translateX(80px);
-  transition: all 0.7s ease-out;
+  transition:
+    opacity 0.55s ease-out,
+    transform 0.55s ease-out;
 }
 
 .box2.show {
@@ -113,6 +124,35 @@ html,
 body,
 #root {
   height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+video {
+  content-visibility: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .box {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes spin-slow {
