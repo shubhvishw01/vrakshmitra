@@ -68,8 +68,8 @@ const Navbar = () => {
       text-center
       whitespace-nowrap
       transition-transform duration-500 ease-in-out
-      ${scrollY > 40 ? "scale-[0.85]" : "scale-100"}
-      ${isTransparent && scrollY < 40 ? "text-white" : "text-green-700"}
+      ${scrollY > 80 ? "scale-[0.85]" : "scale-100"}
+      ${isTransparent && scrollY < 80 ? "text-white" : "text-green-700"}
     `}
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
@@ -128,9 +128,11 @@ const Navbar = () => {
             onClick={toggleLanguage}
             className={`text-xs font-semibold px-2 py-1 rounded-md transition-colors duration-300
       ${
-        isTransparent && scrollY < 40
-          ? "text-white border border-white/70"
-          : "text-yellow-600 border border-green-600"
+        isOpen
+          ? "text-yellow-600 border border-white/70"
+          : isTransparent && scrollY < 80
+            ? "text-white border border-white/70"
+            : "text-yellow-600 border border-green-600"
       }`}
           >
             {lang === "hi" ? "EN" : "हिं"}
@@ -138,8 +140,12 @@ const Navbar = () => {
           {/* Hamburger Menu (LEFT) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`focus:outline-none transition-colors duration-500 ${
-              isTransparent && scrollY < 40 ? "text-white" : "text-green-800"
+            className={`focus:outline-none transition-colors duration-200 ${
+              isOpen
+                ? "text-white"
+                : isTransparent && scrollY < 80
+                  ? "text-white"
+                  : "text-green-800"
             }`}
           >
             {isOpen ? <X size={30} /> : <Menu size={30} />}
